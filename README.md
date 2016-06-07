@@ -139,7 +139,7 @@ FOR ANDROID:
 			</intent-filter>
 		</activity>
 		
-		<!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+		<!-- Include the AdActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -197,12 +197,16 @@ Embedding the ANE:
 # Commercial Version
 http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 
-![Admob ANE](http://www.myflashlabs.com/wp-content/uploads/2016/06/product_adobe-air-ane-extension-admob-595x738.jpg)
+![Admob ANE](http://www.myflashlabs.com/wp-content/uploads/2016/06/product_adobe-air-ane-extension-admob-1-595x738.jpg)
 
 # Tutorials
 [How to embed ANEs into **FlashBuilder**, **FlashCC** and **FlashDevelop**](https://www.youtube.com/watch?v=Oubsb_3F3ec&list=PL_mmSjScdnxnSDTMYb1iDX4LemhIJrt1O)  
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Jun 07, 2016 - V1.0.1*
+* fixed a bug mentioned here: https://github.com/myflashlab/Admob-ANE/issues/2
+
+
 *Jun 05, 2016 - V1.0.0*
 * beginning of the journey!

@@ -1,4 +1,8 @@
 Admob Air Native Extension
 
+*Jun 07, 2016 - V1.0.1*
+* fixed a bug mentioned here: https://github.com/myflashlab/Admob-ANE/issues/2
+
+
 *Jun 05, 2016 - V1.0.0*
 * beginning of the journey!
