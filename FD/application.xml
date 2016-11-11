@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/21.0">
+<application xmlns="http://ns.adobe.com/air/application/24.0">
   <id>com.doitflash.admob</id>
   <versionNumber>1.0.0</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
@@ -10,6 +10,9 @@
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	
+	<!--The new Permission thing on Android works ONLY if you are targetting Android SDK 23 or higher-->
+	<uses-sdk android:targetSdkVersion="23"/>
 	
 	<application>
 		
@@ -104,6 +107,10 @@
   <extensions>
 	
 	<extensionID>com.myflashlab.air.extensions.admob</extensionID>
+	
+	<!-- The following dependency ANEs are only required when compiling for Android -->
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
 	

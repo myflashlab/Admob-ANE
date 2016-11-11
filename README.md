@@ -1,4 +1,4 @@
-# Admob ANE V1.0.1 for Android+iOS
+# Admob ANE V1.1.0 for Android+iOS
 Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
@@ -13,7 +13,7 @@ Admob ANE is supported on Android and iOS with 100% identical ActionScript API w
 **NOTICE**: the demo ANE works only after you hit the "OK" button in the dialog which opens. in your tests make sure that you are NOT calling other ANE methods prior to hitting the "OK" button.
 [Download the ANE](https://github.com/myflashlab/Admob-ANE/tree/master/FD/lib)
 
-# Air Usage - Banner Ad
+# AIR Usage - Banner Ad
 ```actionscript
 import com.myflashlab.air.extensions.admob.AdMob;
 import com.myflashlab.air.extensions.admob.AdRequest;
@@ -21,7 +21,7 @@ import com.myflashlab.air.extensions.admob.banner.ApiBannerAds;
 import com.myflashlab.air.extensions.admob.events.AdMobEvents;
 import com.myflashlab.air.extensions.admob.events.BannerEvents;
 
-// initialize AdMob and pass in the Adobe Air Stage and your AdmMob ApplicationCode
+// initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
 AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
 
 // Add general listeners for the Ads
@@ -70,13 +70,13 @@ private function onAdLoaded(e:AdMobEvents):void
 } 
 ```
 
-# Air Usage - Interstitial Ad
+# AIR Usage - Interstitial Ad
 ```actionscript
 import com.myflashlab.air.extensions.admob.AdMob;
 import com.myflashlab.air.extensions.admob.AdRequest;
 import com.myflashlab.air.extensions.admob.events.AdMobEvents;
 
-// initialize AdMob and pass in the Adobe Air Stage and your AdmMob ApplicationCode
+// initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
 AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
 
 // Add general listeners for the Ads
@@ -115,7 +115,7 @@ private function onAdLoaded(e:AdMobEvents):void
 }
 ```
 
-# Air .xml manifest
+# AIR .xml manifest
 ```xml
 <!--
 FOR ANDROID:
@@ -124,6 +124,9 @@ FOR ANDROID:
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	
+	<!--The new Permission thing on Android works ONLY if you are targetting Android SDK 23 or higher-->
+	<uses-sdk android:targetSdkVersion="23"/>
 	
 	<application>
 		
@@ -173,6 +176,8 @@ Embedding the ANE:
   <extensions>
 	
 	<!-- download the dependency ANEs from https://github.com/myflashlab/common-dependencies-ANE -->
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
 	
@@ -186,12 +191,12 @@ Embedding the ANE:
 # Requirements 
 1. Android API 15 or higher
 2. iOS SDK 7.0 or higher
-3. Air SDK 22 or higher
-4. This ANE is dependent on **googlePlayServices_adsLite.ane** and **googlePlayServices_basement.ane** You need to add these ANEs to your project too. [Download them from here:](https://github.com/myflashlab/common-dependencies-ANE)
-5. To compile on iOS, you will need to add the GoogleMobileAds framework to your Air SDK.
+3. AIR SDK 22 or higher
+4. This ANE is dependent on **androidSupport.ane**, **overrideAir.ane**, **googlePlayServices_adsLite.ane** and **googlePlayServices_basement.ane** You need to add these ANEs to your project too. [Download them from here:](https://github.com/myflashlab/common-dependencies-ANE)
+5. To compile on iOS, you will need to add the GoogleMobileAds framework to your AIR SDK.
   - download GAD_FRAMEWORKS.zip package from our github and extract it on your computer.
   - you will find GoogleMobileAds.framework. just copy it as they are and go to your AdobeAir SDK.
-  - when in your Air SDK, go to "\lib\aot\stub". here you will find all the iOS frameworks provided by Air SDK by default.
+  - when in your AIR SDK, go to "\lib\aot\stub". here you will find all the iOS frameworks provided by AIR SDK by default.
   - paste the GAD frameworks you had copied into this folder and you are ready to build your project.
 
 # Commercial Version
@@ -204,6 +209,11 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Nov 11, 2016 - V1.1.0*
+* Optimized for Android manual permissions if you are targeting AIR SDK 24+
+* The following two dependencies need to be added to other ones also: androidSupport.ane and overrideAir.ane
+* 
+
 *Jun 07, 2016 - V1.0.1*
 * fixed a bug mentioned here: https://github.com/myflashlab/Admob-ANE/issues/2
 
