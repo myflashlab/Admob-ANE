@@ -212,7 +212,6 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 *Nov 11, 2016 - V1.1.0*
 * Optimized for Android manual permissions if you are targeting AIR SDK 24+
 * The following two dependencies need to be added to other ones also: androidSupport.ane and overrideAir.ane
-* 
 
 *Jun 07, 2016 - V1.0.1*
 * fixed a bug mentioned here: https://github.com/myflashlab/Admob-ANE/issues/2
