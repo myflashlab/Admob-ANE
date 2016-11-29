@@ -1,5 +1,15 @@
 Admob Air Native Extension
 
+*Nov 29, 2016 - V2.0.0*
+* Min iOS version to support this ANE will be iOS 8.0+ from now on
+* Updated iOS Admob SDK to V7.15.1 which is now a part of Firebase SDK V3.10.0
+* To Add ```GoogleMobileAds.framework``` to your AIR SDK, you need to [download Firebase SDK V10.0.0](https://dl.google.com/firebase/sdk/ios/3_10_0/Firebase-3.10.0.zip) extract it, then go to folder AdMob and copy GoogleMobileAds.framework to ```YOUR_AIR_SDK/lib/aot/stub/``` folder.
+* Updated Android Admob SDK to Google Play Services dependencies V10.0.0 All you have to do is to [download the latest dependency files](https://github.com/myflashlab/common-dependencies-ANE) as follow:
+ - **androidSupport.ane** V24.2.1
+ - **overrideAir.ane** V3.0.0
+ - **googlePlayServices_adsLite.ane** V10.0.0
+ - **googlePlayServices_basement.ane** V10.0.0
+
 *Nov 11, 2016 - V1.1.0*
 * Optimized for Android manual permissions if you are targeting AIR SDK 24+
 * The following two dependencies need to be added to other ones also: androidSupport.ane and overrideAir.ane
