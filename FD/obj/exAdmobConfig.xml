@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'11/29/2016'</value>
+      <value>'2/25/2017'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -38,6 +38,7 @@
     <external-library-path append="true" />
     <library-path append="true">
       <path-element>D:\ANEs\admob\Vx.x.x\FD\lib\admob.ane</path-element>
+      <path-element>D:\ANEs\admob\Vx.x.x\FD\lib\overrideAir.ane</path-element>
     </library-path>
   </compiler>
   <file-specs>

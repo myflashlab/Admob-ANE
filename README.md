@@ -1,4 +1,4 @@
-# Admob ANE V2.0.0 for Android+iOS
+# Admob ANE V2.1.0 for Android+iOS
 Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
@@ -195,10 +195,6 @@ Embedding the ANE:
 3. AIR SDK 22 or higher
 4. This ANE is dependent on **androidSupport.ane**, **overrideAir.ane**, **googlePlayServices_adsLite.ane** and **googlePlayServices_basement.ane** You need to add these ANEs to your project too. [Download them from here:](https://github.com/myflashlab/common-dependencies-ANE)
 5. To compile on iOS, you will need to add the GoogleMobileAds framework to your AIR SDK.
-  - download [Firebase iOS SDK](https://dl.google.com/firebase/sdk/ios/3_10_0/Firebase-3.10.0.zip) and extract it on your computer.
-  - go to AdMob folder and find GoogleMobileAds.framework. just copy it as it is and go to your AdobeAir SDK.
-  - when in your AIR SDK, go to "\lib\aot\stub". here you will find all the iOS frameworks provided by AIR SDK by default.
-  - paste the frameworks you had copied into this folder and you are ready to build your project.
 
 # Commercial Version
 http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
@@ -210,6 +206,20 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Mar 10, 2017 - V2.1.0*
+* Updated iOS Admob SDK to V7.17.0 and you need to add/update ```GoogleMobileAds.framework``` in your AIR SDK. Find it here: [Firebase SDK V3.13.0](https://dl.google.com/firebase/sdk/ios/3_13_0/Firebase-3.13.0.zip)
+* When you downloaded the Firebase SDK package, also copy the following frameworks to your ```YOUR_AIR_SDK/lib/aot/stub/``` folder.
+ - **FirebaseAnalytics**
+ - **FirebaseCore**
+ - **FirebaseInstanceID**
+ - **GoogleToolboxForMac**
+* Updated Android SDK to V10.2.0 and you need to make sure you are using the [latest version of the dependency files.](https://github.com/myflashlab/common-dependencies-ANE)
+ - **androidSupport.ane** V24.2.1
+ - **overrideAir.ane** V4.0.0
+ - **googlePlayServices_adsLite.ane** V10.2.0
+ - **googlePlayServices_basement.ane** V10.2.0
+* Even if you are building for iOS only, you still need to include the following ANE as the dependency ```overrideAir.ane V4.0.0```
+
 *Nov 29, 2016 - V2.0.0*
 * Min iOS version to support this ANE will be iOS 8.0+ from now on
 * Updated iOS Admob SDK to V7.15.1 which is now a part of Firebase SDK V3.10.0

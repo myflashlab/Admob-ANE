@@ -58,6 +58,7 @@
     <element path="lib\barcodeExtension.ane" />
     <element path="lib\googlePlayServices.ane" />
     <element path="lib\admob.ane" />
+    <element path="lib\overrideAir.ane" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

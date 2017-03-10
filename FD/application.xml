@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <application xmlns="http://ns.adobe.com/air/application/24.0">
   <id>com.doitflash.admob</id>
-  <versionNumber>2.0.0</versionNumber>
+  <versionNumber>2.1.0</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
   <filename>exAdmob</filename>
   <name>AdMob</name>
@@ -108,7 +108,7 @@
 	
 	<extensionID>com.myflashlab.air.extensions.admob</extensionID>
 	
-	<!-- The following dependency ANEs are only required when compiling for Android -->
+	<!-- Download dependency ANEs from https://github.com/myflashlab/common-dependencies-ANE -->
 	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
