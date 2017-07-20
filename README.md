@@ -12,7 +12,7 @@ Admob ANE is supported on Android and iOS with 100% identical ActionScript API w
 [How to get started? **read here**](https://github.com/myflashlab/Admob-ANE/wiki)
 
 **NOTICE**: the demo ANE works only after you hit the "OK" button in the dialog which opens. in your tests make sure that you are NOT calling other ANE methods prior to hitting the "OK" button.
-[Download the ANE](https://github.com/myflashlab/Admob-ANE/tree/master/FD/lib)
+[Download the ANE](https://github.com/myflashlab/Admob-ANE/tree/master/AIR/lib)
 
 # AIR Usage - Banner Ad
 
