@@ -1,5 +1,16 @@
 Admob Air Native Extension
 
+*Jul 19, 2017 - V2.2.0*
+* Updated iOS Admob SDK to V7.21.0 and you need to add/update ```GoogleMobileAds.framework``` in your AIR SDK. Find it here: [Firebase SDK V4.0.3](https://dl.google.com/firebase/sdk/ios/4_0_3/Firebase-4.0.3.zip)
+* When you downloaded the Firebase SDK package, also copy the following frameworks to your ```YOUR_AIR_SDK/lib/aot/stub/``` folder.
+ - **FirebaseAnalytics**
+ - **FirebaseCore**
+ - **FirebaseCoreDiagnostics**
+ - **FirebaseNanoPB**
+ - **FirebaseInstanceID**
+ - **GoogleToolboxForMac**
+ * Updated Android SDK to V11.0.2 and you need to make sure you are using the [latest version of the dependency files.](https://github.com/myflashlab/common-dependencies-ANE)
+
 *Mar 10, 2017 - V2.1.0*
 * Updated iOS Admob SDK to V7.17.0 and you need to add/update ```GoogleMobileAds.framework``` in your AIR SDK. Find it here: [Firebase SDK V3.13.0](https://dl.google.com/firebase/sdk/ios/3_13_0/Firebase-3.13.0.zip)
 * When you downloaded the Firebase SDK package, also copy the following frameworks to your ```YOUR_AIR_SDK/lib/aot/stub/``` folder.
