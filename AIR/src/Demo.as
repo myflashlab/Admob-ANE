@@ -32,6 +32,7 @@ package
 	import com.myflashlab.air.extensions.admob.events.AdMobEvents;
 	import com.myflashlab.air.extensions.admob.events.BannerEvents;
 	
+	import com.myflashlab.air.extensions.dependency.OverrideAir;
 	
 	
 	/**
@@ -155,9 +156,16 @@ package
 			}
 		}
 		
+		private function myDebuggerDelegate($ane:String, $class:String, $msg:String):void
+		{
+			trace($ane+"("+$class+") "+$msg);
+		}
 		
 		private function init():void
 		{
+			// remove this line in production build or pass null as the delegate
+			OverrideAir.enableDebugger(myDebuggerDelegate);
+			
 			// initialize AdMob and pass in the Adobe Air Stage and your AdmMob ApplicationCode
 			AdMob.init(stage, "ca-app-pub-9872578950174042~5422482125");
 			
@@ -201,10 +209,11 @@ package
 			{
 				var adRequest:AdRequest = new AdRequest();
 				adRequest.testDevices = [
-				"4FAE372B00859186B5AE5B4905C7A637", // nexus 5x
-				"D4898953B533542143C3AF9542A3901D", // Samsung Tablet
-				"01633B9B5053A45ACFE3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76hbc927f1df81ccc15d"  // iPhone5
+				"282D9A2CD27F130F1C75346BBE5E59CE", // nexus 5x
+				"D4898953B533540143C1AF9542A3901D", // Samsung Tablet
+				"01633B9B5053A47AC8E3344D1A8664BF", // sony XperiaZ
+				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+				"c8f6556cdbc458d0e12ce46ea6a6d913"  // iPhone6+
 				];
 				adRequest.gender = AdRequest.GENDER_UNKNOWN;
 				// optionaly you may set other request params
@@ -257,10 +266,11 @@ package
 			{
 				var adRequest:AdRequest = new AdRequest();
 				adRequest.testDevices = [
-				"4FAE372B00859186B5AE5B4905C7A637", // nexus 5x
-				"D4898953B533542143C3AF9542A3901D", // Samsung Tablet
-				"01633B9B5053A45ACFE3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76hbc927f1df81ccc15d"  // iPhone5
+				"282D9A2CD27F130F1C75346BBE5E59CE", // nexus 5x
+				"D4898953B533540143C1AF9542A3901D", // Samsung Tablet
+				"01633B9B5053A47AC8E3344D1A8664BF", // sony XperiaZ
+				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+				"c8f6556cdbc458d0e12ce46ea6a6d913"  // iPhone6+
 				];
 				adRequest.gender = AdRequest.GENDER_UNKNOWN;
 				// optionaly you may set other request params

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/26.0">
+<application xmlns="http://ns.adobe.com/air/application/27.0">
   <id>com.doitflash.admob</id>
-  <versionNumber>2.2.0</versionNumber>
+  <versionNumber>2.5.0</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
   <filename>exAdmob</filename>
   <name>AdMob</name>

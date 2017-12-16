@@ -1,18 +1,17 @@
-# Admob ANE V2.2.0 for Android+iOS
+# Admob ANE V2.5.0 for Android+iOS
 Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
 * Supporting Banner and Interstitial Ads
 * Having control over all required EventListeners 
 * Being able to position the Ads by pixels
-* Optimized for AIR 24 and [Firebase ANEs](https://github.com/myflashlab/Firebase-ANE/)
+* Optimized for [Firebase ANEs](https://github.com/myflashlab/Firebase-ANE/)
 
 # asdoc
 [find the latest asdoc for this ANE here.](http://myflashlab.github.io/asdoc/com/myflashlab/air/extensions/admob/package-detail.html)  
 [How to get started? **read here**](https://github.com/myflashlab/Admob-ANE/wiki)
 
-**NOTICE**: the demo ANE works only after you hit the "OK" button in the dialog which opens. in your tests make sure that you are NOT calling other ANE methods prior to hitting the "OK" button.
-[Download the ANE](https://github.com/myflashlab/Admob-ANE/tree/master/AIR/lib)
+Demo ANE can be used for test reasons only. [Download the demo ANE from here](https://github.com/myflashlab/Admob-ANE/tree/master/AIR/lib).
 
 # AIR Usage - Banner Ad
 
@@ -29,7 +28,7 @@ AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
 AdMob.api.addEventListener(AdMobEvents.AD_FAILED, 				onAdFailed);
-AdMob.api.addEventListener(AdMobEvents.AD_LEFT_APP, 			onAdLeftApp);
+AdMob.api.addEventListener(AdMobEvents.AD_LEFT_APP, 				onAdLeftApp);
 AdMob.api.addEventListener(AdMobEvents.AD_LOADED, 				onAdLoaded);
 AdMob.api.addEventListener(AdMobEvents.AD_OPENED, 				onAdOpened);
 
@@ -166,7 +165,6 @@ FOR iOS:
 		<key>MinimumOSVersion</key>
 		<string>8.0</string>
 		
-		<!-- Required for iOS 9 support, read more about this here: https://firebase.google.com/docs/admob/ios/ios9 -->
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
@@ -186,7 +184,7 @@ Embedding the ANE:
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
 	
 	<!-- And finally embed the main Admob ANE -->
-    <extensionID>com.myflashlab.air.extensions.admob</extensionID>
+	<extensionID>com.myflashlab.air.extensions.admob</extensionID>
 	
   </extensions>
 -->
@@ -209,6 +207,20 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Dec 15, 2017 - V2.5.0*
+* Updated iOS SDK to V7.25.0 and Android SDK to V11.6.0
+* Optimized to be used with the [ANE-LAB software](https://github.com/myflashlab/ANE-LAB/)
+* replace ```GoogleMobileAds.framework``` with the one found with [Firebase V4.6.0 iOS SDK package](https://dl.google.com/firebase/sdk/ios/4_6_0/Firebase-4.6.0.zip)
+* Besides the **GoogleMobileAds.framework**, you also need to copy the following frameworks to ```YOUR_AIR_SDK/lib/aot/stub/```
+ - **FirebaseAnalytics**
+ - **FirebaseCore**
+ - **FirebaseCoreDiagnostics**
+ - **FirebaseNanoPB**
+ - **FirebaseInstanceID**
+ - **GoogleToolboxForMac**
+ - **nanopb**
+* make sure you are using the [latest version of the dependency files.](https://github.com/myflashlab/common-dependencies-ANE)
+
 *Jul 19, 2017 - V2.2.0*
 * Updated iOS Admob SDK to V7.21.0 and you need to add/update ```GoogleMobileAds.framework``` in your AIR SDK. Find it here: [Firebase SDK V4.0.3](https://dl.google.com/firebase/sdk/ios/4_0_3/Firebase-4.0.3.zip)
 * When you downloaded the Firebase SDK package, also copy the following frameworks to your ```YOUR_AIR_SDK/lib/aot/stub/``` folder.
