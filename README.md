@@ -1,4 +1,4 @@
-# Admob ANE V2.5.0 for Android+iOS
+# Admob ANE V2.6.0 for Android+iOS
 Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
@@ -193,32 +193,45 @@ Embedding the ANE:
 # Requirements 
 1. Android API 15 or higher
 2. iOS SDK 8.0 or higher
-3. AIR SDK 25 or higher
+3. AIR SDK 29 or higher
 4. This ANE is dependent on **androidSupport.ane**, **overrideAir.ane**, **googlePlayServices_adsLite.ane** and **googlePlayServices_basement.ane** You need to add these ANEs to your project too. [Download them from here:](https://github.com/myflashlab/common-dependencies-ANE)
-5. To compile on iOS, you will need to add the GoogleMobileAds framework to your AIR SDK.
+5. To compile on iOS, you will need to add the [GoogleMobileAds framework](https://dl.google.com/firebase/sdk/ios/4_11_0/Firebase-4.11.0.zip) to your AIR SDK.
 
 # Commercial Version
 http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 
-![Admob ANE](http://www.myflashlabs.com/wp-content/uploads/2016/06/product_adobe-air-ane-extension-admob-1-595x738.jpg)
+![Admob ANE](https://www.myflashlabs.com/wp-content/uploads/2016/06/product_adobe-air-ane-extension-admob-1-595x738.jpg)
 
 # Tutorials
 [How to embed ANEs into **FlashBuilder**, **FlashCC** and **FlashDevelop**](https://www.youtube.com/watch?v=Oubsb_3F3ec&list=PL_mmSjScdnxnSDTMYb1iDX4LemhIJrt1O)  
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Apr 22, 2018 - V2.6.0*
+* Updated iOS SDK to V7.29.0 and Android SDK to V12.0.1
+* make sure you are using the [latest version of the dependency files.](https://github.com/myflashlab/common-dependencies-ANE)
+* Copy the frameworks from [Firebase V4.11.0 iOS SDK package](https://dl.google.com/firebase/sdk/ios/4_11_0/Firebase-4.11.0.zip)
+  - **GoogleMobileAds**
+  - **FirebaseAnalytics**
+  - **FirebaseCore**
+  - **FirebaseCoreDiagnostics**
+  - **FirebaseNanoPB**
+  - **FirebaseInstanceID**
+  - **GoogleToolboxForMac**
+  - **nanopb**
+
 *Dec 15, 2017 - V2.5.0*
 * Updated iOS SDK to V7.25.0 and Android SDK to V11.6.0
 * Optimized to be used with the [ANE-LAB software](https://github.com/myflashlab/ANE-LAB/)
 * replace ```GoogleMobileAds.framework``` with the one found with [Firebase V4.6.0 iOS SDK package](https://dl.google.com/firebase/sdk/ios/4_6_0/Firebase-4.6.0.zip)
 * Besides the **GoogleMobileAds.framework**, you also need to copy the following frameworks to ```YOUR_AIR_SDK/lib/aot/stub/```
- - **FirebaseAnalytics**
- - **FirebaseCore**
- - **FirebaseCoreDiagnostics**
- - **FirebaseNanoPB**
- - **FirebaseInstanceID**
- - **GoogleToolboxForMac**
- - **nanopb**
+  - **FirebaseAnalytics**
+  - **FirebaseCore**
+  - **FirebaseCoreDiagnostics**
+  - **FirebaseNanoPB**
+  - **FirebaseInstanceID**
+  - **GoogleToolboxForMac**
+  - **nanopb**
 * make sure you are using the [latest version of the dependency files.](https://github.com/myflashlab/common-dependencies-ANE)
 
 *Jul 19, 2017 - V2.2.0*
