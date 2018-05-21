@@ -163,6 +163,13 @@ package
 		
 		private function init():void
 		{
+			if(!OverrideAir.isSupported)
+			{
+				trace("These ANEs work on real devices only; not emulators");
+				C.log("These ANEs work on real devices only; not emulators");
+				return;
+			}
+			
 			// remove this line in production build or pass null as the delegate
 			OverrideAir.enableDebugger(myDebuggerDelegate);
 			
@@ -197,8 +204,8 @@ package
 			
 			function initBanner(e:MouseEvent):void
 			{
-				AdMob.api.banner.init("ca-app-pub-45212548785225/215478996521", ApiBannerAds.BANNER); // unitId for Android
-				//AdMob.api.banner.init("ca-app-pub-45212548785225/215478893028", ApiBannerAds.BANNER); // unitId for iOS
+				//AdMob.api.banner.init("ca-app-pub-45212548785225/215478996521", ApiBannerAds.BANNER); // unitId for Android
+				AdMob.api.banner.init("ca-app-pub-45212548785225/215478893028", ApiBannerAds.BANNER); // unitId for iOS
 			}
 			//----------------------------------------------------------------------
 			var btn1:MySprite = createBtn("2) load Banner", 0xDFE4FF);
@@ -209,14 +216,30 @@ package
 			{
 				var adRequest:AdRequest = new AdRequest();
 				adRequest.testDevices = [
-				"282D9A2CD27F130F1C75346BBE5E59CE", // nexus 5x
-				"D4898953B533540143C1AF9542A3901D", // Samsung Tablet
-				"01633B9B5053A47AC8E3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
-				"c8f6556cdbc458d0e12ce46ea6a6d913"  // iPhone6+
+				"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
+				"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
+				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
+				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
+				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
+				"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
 				];
 				adRequest.gender = AdRequest.GENDER_UNKNOWN;
-				// optionaly you may set other request params
+				
+				// optionally you may set other request params
+				
+				/*
+					Requesting Consent from European Users
+					Based on users consent, you should set if your app should show
+					personalized ads or not. By default, Admob shows personalized Ads.
+					In case your user does not allow that, you should also make sure that
+					shown ads are not personalized. You can do this like below:
+					
+					adRequest.extras = {npa:1}; // npa stands for "Non-Personalized Ads"
+					
+					For more information, read here:
+					https://developers.google.com/admob/ios/eu-consent#forward_consent_to_the_google_mobile_ads_sdk
+					https://developers.google.com/admob/android/eu-consent#forward_consent_to_the_google_mobile_ads_sdk
+				 */
 				
 				AdMob.api.banner.loadAd(adRequest);
 			}
@@ -254,8 +277,8 @@ package
 			
 			function initInterstitial(e:MouseEvent):void
 			{
-				AdMob.api.interstitial.init("ca-app-pub-45212548785225/452154789320"); // unitId for Android
-				//AdMob.api.interstitial.init("ca-app-pub-45212548785225/124801259720"); // unitId for iOS
+//				AdMob.api.interstitial.init("ca-app-pub-45212548785225/452154789320"); // unitId for Android
+				AdMob.api.interstitial.init("ca-app-pub-45212548785225/124801259720"); // unitId for iOS
 			}
 			//----------------------------------------------------------------------
 			var btn4:MySprite = createBtn("2) load Interstitial then show it", 0xFF9900);
@@ -266,14 +289,16 @@ package
 			{
 				var adRequest:AdRequest = new AdRequest();
 				adRequest.testDevices = [
-				"282D9A2CD27F130F1C75346BBE5E59CE", // nexus 5x
-				"D4898953B533540143C1AF9542A3901D", // Samsung Tablet
-				"01633B9B5053A47AC8E3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
-				"c8f6556cdbc458d0e12ce46ea6a6d913"  // iPhone6+
+				"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
+				"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
+				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
+				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
+				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
+				"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
 				];
 				adRequest.gender = AdRequest.GENDER_UNKNOWN;
-				// optionaly you may set other request params
+				
+				// optionally you may set other request params
 				
 				AdMob.api.interstitial.loadAd(adRequest);
 			}
@@ -287,6 +312,7 @@ package
 				AdMob.api.interstitial.dispose();
 			}
 			//----------------------------------------------------------------------
+			
 			
 			
 			

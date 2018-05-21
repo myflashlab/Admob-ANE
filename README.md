@@ -1,4 +1,4 @@
-# Admob ANE V2.6.0 for Android+iOS
+# Admob ANE V2.7.0 for Android+iOS
 Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
@@ -54,6 +54,20 @@ var adRequest:AdRequest = new AdRequest();
 	
 	For the best practice usage of banner Ads, read here:
 	https://support.google.com/admob/answer/6128877?hl=en
+
+
+	>> IMPORTANT <<
+	Requesting Consent from European Users
+	Based on users consent, you should set if your app should show
+	personalized ads or not. By default, Admob shows personalized Ads.
+	In case your user does not allow that, you should also make sure that
+	shown ads are not personalized. You can do this like below:
+					
+	adRequest.extras = {npa:1}; // npa stands for "Non-Personalized Ads"
+	
+	For more information, read here:
+	https://developers.google.com/admob/ios/eu-consent#forward_consent_to_the_google_mobile_ads_sdk
+	https://developers.google.com/admob/android/eu-consent#forward_consent_to_the_google_mobile_ads_sdk
 */
 
 // Now that you have the Ad request ready, simply load your banner! That simple.
@@ -207,6 +221,25 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*May 21, 2018 - V2.7.0*
+* Added support for NetworkExtras. This is especially useful for making your app [gdpr compliance](https://support.google.com/admob/answer/7666366)
+* We can't give you legal advices but we updated the Admob ANE so you can make your app in alignment with the gdpr privacy. Based on your users consent, you must decide if Admob can show personalized Ads or non-personalized Ads.
+```actionscript
+/*
+	Requesting Consent from European Users
+	Based on users consent, you should set if your app should show
+	personalized ads or not. By default, Admob shows personalized Ads.
+	In case your user does not allow that, you should also make sure that
+	shown ads are not personalized. You can do this like below:
+	
+	adRequest.extras = {npa:1}; // npa stands for "Non-Personalized Ads"
+					
+	For more information, read here:
+	https://developers.google.com/admob/ios/eu-consent#forward_consent_to_the_google_mobile_ads_sdk
+	https://developers.google.com/admob/android/eu-consent#forward_consent_to_the_google_mobile_ads_sdk
+*/
+``` 
+
 *Apr 22, 2018 - V2.6.0*
 * Updated iOS SDK to V7.29.0 and Android SDK to V12.0.1
 * make sure you are using the [latest version of the dependency files.](https://github.com/myflashlab/common-dependencies-ANE)
