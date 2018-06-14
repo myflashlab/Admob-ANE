@@ -26,12 +26,7 @@ package
 	import flash.ui.MultitouchInputMode;
 	import flash.utils.setTimeout;
 	
-	import com.myflashlab.air.extensions.admob.AdMob;
-	import com.myflashlab.air.extensions.admob.AdRequest;
-	import com.myflashlab.air.extensions.admob.banner.ApiBannerAds;
-	import com.myflashlab.air.extensions.admob.events.AdMobEvents;
-	import com.myflashlab.air.extensions.admob.events.BannerEvents;
-	
+	import com.myflashlab.air.extensions.admob.*;
 	import com.myflashlab.air.extensions.dependency.OverrideAir;
 	
 	
@@ -184,8 +179,12 @@ package
 			AdMob.api.addEventListener(AdMobEvents.AD_OPENED, 				onAdOpened);
 			
 			// listen to the banner Ad to get its final width/height in pixels so you can place it anywhere you like in your Air app
-			AdMob.api.banner.addEventListener(BannerEvents.SIZE_MEASURED, 	onBannerAdSizeReceived);
+			AdMob.api.banner.addEventListener(AdMobEvents.SIZE_MEASURED, 	onBannerAdSizeReceived);
 			
+			// listen to the RewardVideo Ad events
+			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_BEGIN_PLAYING, onAdBeginPlayiing);
+			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_END_PLAYING, onAdEndPlayiing);
+			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_DELIVER_REWARD, onDeliverReward);
 			
 			
 			
@@ -204,8 +203,7 @@ package
 			
 			function initBanner(e:MouseEvent):void
 			{
-				//AdMob.api.banner.init("ca-app-pub-45212548785225/215478996521", ApiBannerAds.BANNER); // unitId for Android
-				AdMob.api.banner.init("ca-app-pub-45212548785225/215478893028", ApiBannerAds.BANNER); // unitId for iOS
+				AdMob.api.banner.init("ca-app-pub-9202401623205742/5226121317", ApiBannerAds.BANNER);
 			}
 			//----------------------------------------------------------------------
 			var btn1:MySprite = createBtn("2) load Banner", 0xDFE4FF);
@@ -277,8 +275,7 @@ package
 			
 			function initInterstitial(e:MouseEvent):void
 			{
-//				AdMob.api.interstitial.init("ca-app-pub-45212548785225/452154789320"); // unitId for Android
-				AdMob.api.interstitial.init("ca-app-pub-45212548785225/124801259720"); // unitId for iOS
+				AdMob.api.interstitial.init("ca-app-pub-9202401623205742/5226121317");
 			}
 			//----------------------------------------------------------------------
 			var btn4:MySprite = createBtn("2) load Interstitial then show it", 0xFF9900);
@@ -325,6 +322,37 @@ package
 			
 			
 			
+			//----------------------------------------------------------------------
+			var btn10:MySprite = createBtn("Load Rewarded Video then show it", 0x990000);
+			btn10.addEventListener(MouseEvent.CLICK, loadRewardedVideo);
+			_list.add(btn10);
+			
+			function loadRewardedVideo(e:MouseEvent):void
+			{
+				var adRequest:AdRequest = new AdRequest();
+				adRequest.testDevices = [
+					"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
+					"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
+					"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
+					"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
+					"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
+					"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
+				];
+				
+				// optionally you may set other request params
+				
+				AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-9202401623205742/3427670519");
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			
@@ -338,8 +366,9 @@ package
 		
 		private function onAdFailed(e:AdMobEvents):void
 		{
-			C.log("onAdFailed > " + e.adType); // AdMob.AD_TYPE_*
-			C.log("onAdFailed > " + e.errorCode); // AdMob.ERROR_CODE_*
+			C.log("onAdFailed adType > " + e.adType); // AdMob.AD_TYPE_*
+			C.log("onAdFailed errorCode > " + e.errorCode); // AdMob.ERROR_CODE_*
+			C.log("onAdFailed msg > " + e.msg);
 		}
 		
 		private function onAdLeftApp(e:AdMobEvents):void
@@ -357,11 +386,16 @@ package
 				AdMob.api.banner.y = stage.stageHeight / 2 - AdMob.api.banner.height / 2;
 				
 			}
-			else if (e.adType == AdMob.AD_TYPE_INTERSTITIAL)
+			else if(e.adType == AdMob.AD_TYPE_INTERSTITIAL)
 			{
 				AdMob.api.interstitial.show();
-				
-				//AdMob.api.interstitial.isLoaded;
+			}
+			else if(e.adType == AdMob.AD_TYPE_REWARDED_VIDEO)
+			{
+				if(AdMob.api.rewardedVideo.isReady)
+				{
+					AdMob.api.rewardedVideo.show();
+				}
 			}
 		}
 		
@@ -370,18 +404,32 @@ package
 			C.log("onAdOpened > " + e.adType); // AdMob.AD_TYPE_*
 		}
 		
-		private function onBannerAdSizeReceived(e:BannerEvents):void
+		private function onBannerAdSizeReceived(e:AdMobEvents):void
 		{
 			// NOTE: do not try to set the position of the Ad here! wait for the AdMobEvents.AD_LOADED event first!
 			
 			C.log("onBannerAdSizeReceived");
 			C.log("width = " + e.width); // OR AdMob.api.banner.width
 			C.log("height = " + e.height); // OR AdMob.api.banner.height
-			
-			
 		}
 		
+		private function onAdBeginPlayiing(e:AdMobEvents):void
+		{
+			C.log("onAdBeginPlayiing");
+			trace("onAdBeginPlayiing");
+		}
 		
+		private function onAdEndPlayiing(e:AdMobEvents):void
+		{
+			C.log("onAdEndPlayiing");
+			trace("onAdEndPlayiing");
+		}
+		
+		private function onDeliverReward(e:AdMobEvents):void
+		{
+			C.log("onDeliverReward Type: " + e.rewardType + " amount: " + e.rewardAmount);
+			trace("onDeliverReward Type: " + e.rewardType + " amount: " + e.rewardAmount);
+		}
 		
 		
 		

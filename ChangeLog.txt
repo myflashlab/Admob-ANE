@@ -1,5 +1,11 @@
 Admob Air Native Extension
 
+*Jun 14, 2018 - V3.0.0*
+* Added support for rewardVideo through ```AdMob.api.rewardedVideo```.
+* Changed packaging of classes. From now on, you only need to import ```com.myflashlab.air.extensions.admob.*;``` to access all Admob related APIs.
+* removed ```BannerEvents```. Instead use ```AdMobEvents```.
+* on iOS only: When Ad load fails with ```AD_FAILED``` event, you can see the error message using ```event.msg```.
+
 *May 21, 2018 - V2.7.0*
 * Added support for NetworkExtras. This is especially useful for making your app [gdpr compliance](https://support.google.com/admob/answer/7666366)
 * We can't give you legal advices but we updated the Admob ANE so you can make your app in alignment with the gdpr privacy. Based on your users consent, you must decide if Admob can show personalized Ads or non-personalized Ads.

@@ -1,10 +1,10 @@
-# Admob ANE V2.7.0 for Android+iOS
+# Admob ANE V3.0.0 for Android+iOS
 Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
-* Supporting Banner and Interstitial Ads
+* Supporting Banner, Interstitial and Rewarded Video Ads
 * Having control over all required EventListeners 
-* Being able to position the Ads by pixels
+* Being able to position the banner Ads by pixels
 * Optimized for [Firebase ANEs](https://github.com/myflashlab/Firebase-ANE/)
 
 # asdoc
@@ -16,24 +16,21 @@ Demo ANE can be used for test reasons only. [Download the demo ANE from here](ht
 # AIR Usage - Banner Ad
 
 ```actionscript
-import com.myflashlab.air.extensions.admob.AdMob;
-import com.myflashlab.air.extensions.admob.AdRequest;
-import com.myflashlab.air.extensions.admob.banner.ApiBannerAds;
-import com.myflashlab.air.extensions.admob.events.AdMobEvents;
-import com.myflashlab.air.extensions.admob.events.BannerEvents;
+import com.myflashlab.air.extensions.admob.*;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+if(AdMob.os == AdMob.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+else if(AdMob.os == AdMob.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
 
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
 AdMob.api.addEventListener(AdMobEvents.AD_FAILED, 				onAdFailed);
-AdMob.api.addEventListener(AdMobEvents.AD_LEFT_APP, 				onAdLeftApp);
+AdMob.api.addEventListener(AdMobEvents.AD_LEFT_APP, 			onAdLeftApp);
 AdMob.api.addEventListener(AdMobEvents.AD_LOADED, 				onAdLoaded);
 AdMob.api.addEventListener(AdMobEvents.AD_OPENED, 				onAdOpened);
 
-// listen to the banner Ad to get its final width/height in pixels
-AdMob.api.banner.addEventListener(BannerEvents.SIZE_MEASURED, 	onBannerAdSizeReceived);
+// listen to the banner Ad to get its final width/height in pixels so you can place it anywhere you like in your Air app
+AdMob.api.banner.addEventListener(AdMobEvents.SIZE_MEASURED, 	onBannerAdSizeReceived);
 
 // to create a banner Ad, first you need to initialize a new banner with your unitId and prefered banner size
 AdMob.api.banner.init("ca-app-pub-930840122057342/5256142323", ApiBannerAds.BANNER);
@@ -88,12 +85,11 @@ private function onAdLoaded(e:AdMobEvents):void
 # AIR Usage - Interstitial Ad
 
 ```actionscript
-import com.myflashlab.air.extensions.admob.AdMob;
-import com.myflashlab.air.extensions.admob.AdRequest;
-import com.myflashlab.air.extensions.admob.events.AdMobEvents;
+import com.myflashlab.air.extensions.admob.*;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+if(AdMob.os == AdMob.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+else if(AdMob.os == AdMob.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
 
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
@@ -128,6 +124,51 @@ private function onAdLoaded(e:AdMobEvents):void
 			AdMob.api.interstitial.show();
 		}
 	}
+}
+```
+
+# AIR Usage - RewardedVideo Ad
+
+```actionscript
+import com.myflashlab.air.extensions.admob.*;
+
+// initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
+if(AdMob.os == AdMob.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+else if(AdMob.os == AdMob.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+
+// Add general listeners for the Ads
+AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
+AdMob.api.addEventListener(AdMobEvents.AD_FAILED, 				onAdFailed);
+AdMob.api.addEventListener(AdMobEvents.AD_LEFT_APP, 			onAdLeftApp);
+AdMob.api.addEventListener(AdMobEvents.AD_LOADED, 				onAdLoaded);
+AdMob.api.addEventListener(AdMobEvents.AD_OPENED, 				onAdOpened);
+
+// listen to the RewardVideo Ad events
+AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_BEGIN_PLAYING, onAdBeginPlayiing);
+AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_END_PLAYING, onAdEndPlayiing);
+AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_DELIVER_REWARD, onDeliverReward);
+
+// then create a new Ad request just like how you did for the Banner Ads
+var adRequest:AdRequest = new AdRequest();
+
+AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-9202401623205742/3427670519");
+
+// now, you must wait for the banner to load before you can show it.
+private function onAdLoaded(e:AdMobEvents):void
+{
+	if (e.adType == AdMob.AD_TYPE_REWARDED_VIDEO)
+	{
+		// Your Ad is ready to be shown. show it whenever you like!
+		if(AdMob.api.rewardedVideo.isReady)
+		{
+			AdMob.api.rewardedVideo.show();
+		}
+	}
+}
+
+private function onDeliverReward(e:AdMobEvents):void
+{
+	trace("onDeliverReward Type: " + e.rewardType + " amount: " + e.rewardAmount);
 }
 ```
 
@@ -171,6 +212,11 @@ FOR ANDROID:
 		
 	</application>
 </manifest>
+
+
+
+
+
 <!--
 FOR iOS:
 -->
@@ -186,6 +232,10 @@ FOR iOS:
 		</dict>
 		
 	</InfoAdditions>
+
+
+
+	
 <!--
 Embedding the ANE:
 -->
@@ -221,6 +271,12 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Jun 14, 2018 - V3.0.0*
+* Added support for rewardVideo through ```AdMob.api.rewardedVideo```.
+* Changed packaging of classes. From now on, you only need to import ```com.myflashlab.air.extensions.admob.*;``` to access all Admob related APIs.
+* removed ```BannerEvents```. Instead use ```AdMobEvents```.
+* on iOS only: When Ad load fails with ```AD_FAILED``` event, you can see the error message using ```event.msg```.
+
 *May 21, 2018 - V2.7.0*
 * Added support for NetworkExtras. This is especially useful for making your app [gdpr compliance](https://support.google.com/admob/answer/7666366)
 * We can't give you legal advices but we updated the Admob ANE so you can make your app in alignment with the gdpr privacy. Based on your users consent, you must decide if Admob can show personalized Ads or non-personalized Ads.
