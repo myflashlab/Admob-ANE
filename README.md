@@ -17,10 +17,11 @@ Demo ANE can be used for test reasons only. [Download the demo ANE from here](ht
 
 ```actionscript
 import com.myflashlab.air.extensions.admob.*;
+import com.myflashlab.air.extensions.dependency.OverrideAir;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-if(AdMob.os == AdMob.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
-else if(AdMob.os == AdMob.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
 
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
@@ -86,10 +87,11 @@ private function onAdLoaded(e:AdMobEvents):void
 
 ```actionscript
 import com.myflashlab.air.extensions.admob.*;
+import com.myflashlab.air.extensions.dependency.OverrideAir;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-if(AdMob.os == AdMob.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
-else if(AdMob.os == AdMob.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
 
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
@@ -131,10 +133,11 @@ private function onAdLoaded(e:AdMobEvents):void
 
 ```actionscript
 import com.myflashlab.air.extensions.admob.*;
+import com.myflashlab.air.extensions.dependency.OverrideAir;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-if(AdMob.os == AdMob.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
-else if(AdMob.os == AdMob.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
+else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
 
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
