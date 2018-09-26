@@ -1,4 +1,4 @@
-# Admob ANE V3.0.0 for Android+iOS
+# Admob ANE V3.1.0 for Android+iOS
 Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
@@ -185,9 +185,7 @@ FOR ANDROID:
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	
-	<!--The new Permission thing on Android works ONLY if you are targetting Android SDK 23 or higher-->
-	<uses-sdk android:targetSdkVersion="23"/>
+	<uses-sdk android:targetSdkVersion="26"/>
 	
 	<application>
 		
@@ -244,9 +242,13 @@ Embedding the ANE:
 -->
   <extensions>
 	
-	<!-- download the dependency ANEs from https://github.com/myflashlab/common-dependencies-ANE -->
-	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport</extensionID>
+	<!-- dependency ANEs https://github.com/myflashlab/common-dependencies-ANE -->
 	<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.arch</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.core</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.customtabs</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.v4</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
 	
@@ -258,22 +260,38 @@ Embedding the ANE:
 ```
 
 # Requirements 
-1. Android API 15 or higher
-2. iOS SDK 8.0 or higher
-3. AIR SDK 29 or higher
-4. This ANE is dependent on **androidSupport.ane**, **overrideAir.ane**, **googlePlayServices_adsLite.ane** and **googlePlayServices_basement.ane** You need to add these ANEs to your project too. [Download them from here:](https://github.com/myflashlab/common-dependencies-ANE)
-5. To compile on iOS, you will need to add the [GoogleMobileAds framework](https://dl.google.com/firebase/sdk/ios/4_11_0/Firebase-4.11.0.zip) to your AIR SDK.
+1. Android API 15+
+2. iOS SDK 8.0+
+3. AIR SDK 30+
+4. To compile on iOS, you will need to add the [GoogleMobileAds framework](https://dl.google.com/firebase/sdk/ios/5_4_1/Firebase-5.4.1.zip) to your AIR SDK at location: ```AIR_SDK/lib/aot/stub```
 
 # Commercial Version
 http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 
-![Admob ANE](http://www.myflashlabs.com/wp-content/uploads/2016/06/product_adobe-air-ane-extension-admob-595x738.jpg)
+![Admob ANE](https://www.myflashlabs.com/wp-content/uploads/2016/06/product_adobe-air-ane-extension-admob-595x738.jpg)
 
 # Tutorials
 [How to embed ANEs into **FlashBuilder**, **FlashCC** and **FlashDevelop**](https://www.youtube.com/watch?v=Oubsb_3F3ec&list=PL_mmSjScdnxnSDTMYb1iDX4LemhIJrt1O)  
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Sep 20, 2018 - V3.1.0*
+* Updated iOS SDK to V7.31.0 and Android SDK to V15.0.1
+* SDK upgrades are synced with Firebase ANE V7.0.0
+* Min AIR SDK 30+
+* Deprecated ```userBirthday``` and ```gender``` properties on ```AdRequest``` class.
+* Removed AndroidSupport dependency and added the following:
+```xml
+<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.arch</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.core</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.customtabs</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.v4</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
+```
+
 *Jun 14, 2018 - V3.0.0*
 * Added support for rewardVideo through ```AdMob.api.rewardedVideo```.
 * Changed packaging of classes. From now on, you only need to import ```com.myflashlab.air.extensions.admob.*;``` to access all Admob related APIs.

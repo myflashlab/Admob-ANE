@@ -1,5 +1,22 @@
 Admob Air Native Extension
 
+*Sep 20, 2018 - V3.1.0*
+* Updated iOS SDK to V7.31.0 and Android SDK to V15.0.1
+* SDK upgrades are synced with Firebase ANE V7.0.0
+* Min AIR SDK 30+
+* Deprecated ```userBirthday``` and ```gender``` properties on ```AdRequest``` class.
+* Removed AndroidSupport dependency and added the following:
+```xml
+<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.arch</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.core</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.customtabs</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.v4</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
+```
+
 *Jun 14, 2018 - V3.0.0*
 * Added support for rewardVideo through ```AdMob.api.rewardedVideo```.
 * Changed packaging of classes. From now on, you only need to import ```com.myflashlab.air.extensions.admob.*;``` to access all Admob related APIs.

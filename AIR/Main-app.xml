@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/29.0">
+<application xmlns="http://ns.adobe.com/air/application/30.0">
   <id>com.doitflash.admob</id>
-  <versionNumber>3.0.0</versionNumber>
+  <versionNumber>3.1.0</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
   <filename>exAdmob</filename>
   <name>AdMob</name>
@@ -10,9 +10,7 @@
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	
-	<!--The new Permission thing on Android works ONLY if you are targetting Android SDK 23 or higher-->
-	<uses-sdk android:targetSdkVersion="23"/>
+	<uses-sdk android:targetSdkVersion="26"/>
 	
 	<application>
 		
@@ -43,8 +41,6 @@
   </android>
 	
   <iPhone>
-    <!--https://developer.apple.com/library/ios/documentation/general/reference/infoplistkeyreference/Articles/iPhoneOSKeys.html-->
-    <!--http://help.adobe.com/en_US/air/build/WSfffb011ac560372f7e64a7f12cd2dd1867-8000.html-->
 	  
 	 <InfoAdditions><![CDATA[
 	
@@ -120,8 +116,13 @@
 	
 	<extensionID>com.myflashlab.air.extensions.admob</extensionID>
 	
-	<!-- Download dependency ANEs from https://github.com/myflashlab/common-dependencies-ANE -->
+	<!-- Dependency ANEs https://github.com/myflashlab/common-dependencies-ANE -->
 	<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.arch</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.core</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.customtabs</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.v4</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
 	
