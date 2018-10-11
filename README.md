@@ -1,17 +1,38 @@
-# Admob ANE V3.1.0 for Android+iOS
-Admob ANE is supported on Android and iOS with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
+# Admob ANE V4.0.0 for Android+iOS
+Admob ANE supporting [DoubleClick](https://developers.google.com/ad-manager/mobile-ads-sdk/) and [Admob](https://developers.google.com/admob/) SDKs with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
 * Supporting Banner, Interstitial and Rewarded Video Ads
 * Having control over all required EventListeners 
 * Being able to position the banner Ads by pixels
 * Optimized for [Firebase ANEs](https://github.com/myflashlab/Firebase-ANE/)
+* DoubleClick SDK support
 
 # asdoc
 [find the latest asdoc for this ANE here.](http://myflashlab.github.io/asdoc/com/myflashlab/air/extensions/admob/package-detail.html)  
 [How to get started? **read here**](https://github.com/myflashlab/Admob-ANE/wiki)
 
 Demo ANE can be used for test reasons only. [Download the demo ANE from here](https://github.com/myflashlab/Admob-ANE/tree/master/AIR/lib).
+
+# Test UnitIDs
+
+**For DoubleClick**
+* Android/iOS
+	* banner: ```/6499/example/banner```
+	* interstitial: ```/6499/example/interstitial```
+	* rewarded-video: ```/6499/example/rewarded-video```
+
+**For Admob**
+* iOS:
+	* appId for initializing the ANE: ```ca-app-pub-3940256099942544~1458002511```
+	* banner: ```pub-3940256099942544/2934735716```
+	* interstitial: ```pub-3940256099942544/4411468910```
+	* rewarded-video: ```ca-app-pub-3940256099942544/1712485313```
+* Android:
+	* appId for initializing the ANE: ```ca-app-pub-3940256099942544~3347511713```
+	* banner: ```ca-app-pub-3940256099942544/6300978111```
+	* interstitial: ```ca-app-pub-3940256099942544/1033173712```
+	* rewarded-video: ```ca-app-pub-3940256099942544/5224354917```
 
 # AIR Usage - Banner Ad
 
@@ -22,6 +43,13 @@ import com.myflashlab.air.extensions.dependency.OverrideAir;
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
 if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
 else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+
+/*
+	If you want to initialize DoubleClick SDK instead of admob, all you have to do is to pass null as the
+	second parameter when initializing the ANE:
+
+	AdMob.init(stage, null);
+*/
 
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
@@ -93,6 +121,13 @@ import com.myflashlab.air.extensions.dependency.OverrideAir;
 if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
 else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
 
+/*
+	If you want to initialize DoubleClick SDK instead of admob, all you have to do is to pass null as the
+	second parameter when initializing the ANE:
+
+	AdMob.init(stage, null);
+*/
+
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
 AdMob.api.addEventListener(AdMobEvents.AD_FAILED, 				onAdFailed);
@@ -138,6 +173,13 @@ import com.myflashlab.air.extensions.dependency.OverrideAir;
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
 if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
 else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+
+/*
+	If you want to initialize DoubleClick SDK instead of admob, all you have to do is to pass null as the
+	second parameter when initializing the ANE:
+
+	AdMob.init(stage, null);
+*/
 
 // Add general listeners for the Ads
 AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
@@ -275,6 +317,13 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Oct 11, 2018 - V4.0.0*
+* Added support for the DoubleClick API. Notice that in your app you can use only one platform. it's either Admob or DoubleClick. You will not be able to use them both at the same time.
+* To use DoubleClick API, simply pass null as the second parameter when initializing the ANE. All the other methods are just like before.
+```actionscript
+AdMob.init(stage, null);
+```
+
 *Sep 20, 2018 - V3.1.0*
 * Updated iOS SDK to V7.31.0 and Android SDK to V15.0.1
 * SDK upgrades are synced with Firebase ANE V7.0.0

@@ -32,9 +32,9 @@ package
 	
 	/**
 	 * ...
-	 * @author Hadi Tavakoli - 6/1/2016 5:41 PM
+	 * @author Hadi Tavakoli - 10/11/2018 4:41 PM
 	 */
-	public class Demo extends Sprite 
+	public class DemoDoubleClick extends Sprite
 	{
 		private const BTN_WIDTH:Number = 150;
 		private const BTN_HEIGHT:Number = 60;
@@ -44,7 +44,7 @@ package
 		private var _list:List;
 		private var _numRows:int = 1;
 		
-		public function Demo():void 
+		public function DemoDoubleClick():void
 		{
 			Multitouch.inputMode = MultitouchInputMode.GESTURE;
 			NativeApplication.nativeApplication.addEventListener(Event.ACTIVATE, handleActivate);
@@ -72,7 +72,7 @@ package
 			_txt.multiline = true;
 			_txt.wordWrap = true;
 			_txt.embedFonts = false;
-			_txt.htmlText = "<font face='Arimo' color='#333333' size='20'><b>AdMob ANE for Adobe Air V"+AdMob.VERSION+"</font>";
+			_txt.htmlText = "<font face='Arimo' color='#333333' size='20'><b>AdMob/DoubleClick ANE V"+AdMob.VERSION+"</font>";
 			_txt.scaleX = _txt.scaleY = DeviceInfo.dpiScaleMultiplier;
 			this.addChild(_txt);
 			
@@ -158,20 +158,12 @@ package
 		
 		private function init():void
 		{
-			if(!OverrideAir.isSupported)
-			{
-				trace("These ANEs work on real devices only; not emulators");
-				C.log("These ANEs work on real devices only; not emulators");
-				return;
-			}
-			
 			// remove this line in production build or pass null as the delegate
 			OverrideAir.enableDebugger(myDebuggerDelegate);
 			
-			// initialize AdMob and pass in the Adobe Air Stage and your AdmMob ApplicationCode
-			// pass null as the second parameter if you want to use DoubleClick API instead. 
-			// check out the sample file DemoDoubleClick.as
-			AdMob.init(stage, "ca-app-pub-9872578950174042~5422482125");
+			// initialize the ANE and pass the AIR Stage to the ANE
+			// pass null for the second param so DoubleClick API will be used instead of Admob
+			AdMob.init(stage, null);
 			
 			// Add general listeners for the Ads
 			AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
@@ -205,7 +197,7 @@ package
 			
 			function initBanner(e:MouseEvent):void
 			{
-				AdMob.api.banner.init("ca-app-pub-9202401623205742/5226121317", ApiBannerAds.BANNER);
+				AdMob.api.banner.init("/6499/example/banner", ApiBannerAds.BANNER);
 			}
 			//----------------------------------------------------------------------
 			var btn1:MySprite = createBtn("2) load Banner", 0xDFE4FF);
@@ -221,9 +213,9 @@ package
 				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
 				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
 				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
-				"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
+				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
+				"c60b7dbf46f3245f5237c48f8eb1a100" // iPhoneX
 				];
-				adRequest.gender = AdRequest.GENDER_UNKNOWN;
 				
 				// optionally you may set other request params
 				
@@ -277,7 +269,7 @@ package
 			
 			function initInterstitial(e:MouseEvent):void
 			{
-				AdMob.api.interstitial.init("ca-app-pub-9202401623205742/5226121317");
+				AdMob.api.interstitial.init("/6499/example/interstitial");
 			}
 			//----------------------------------------------------------------------
 			var btn4:MySprite = createBtn("2) load Interstitial then show it", 0xFF9900);
@@ -293,9 +285,9 @@ package
 				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
 				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
 				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
-				"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
+				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
+				"c60b7dbf46f3245f5237c48f8eb1a100" // iPhoneX
 				];
-				adRequest.gender = AdRequest.GENDER_UNKNOWN;
 				
 				// optionally you may set other request params
 				
@@ -338,12 +330,14 @@ package
 					"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
 					"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
 					"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
-					"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
+					"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
+					"c60b7dbf46f3245f5237c48f8eb1a100" // iPhoneX
 				];
 				
 				// optionally you may set other request params
 				
-				AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-9202401623205742/3427670519");
+				
+				AdMob.api.rewardedVideo.loadAd(adRequest, "/6499/example/rewarded-video");
 			}
 			
 			
