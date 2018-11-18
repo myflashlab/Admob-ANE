@@ -44,6 +44,8 @@ package
 		private var _list:List;
 		private var _numRows:int = 1;
 		
+		private var _isAppInBackground:Boolean;
+		
 		public function DemoDoubleClick():void
 		{
 			Multitouch.inputMode = MultitouchInputMode.GESTURE;
@@ -100,11 +102,13 @@ package
 		private function handleActivate(e:Event):void
 		{
 			NativeApplication.nativeApplication.systemIdleMode = SystemIdleMode.KEEP_AWAKE;
+			_isAppInBackground = false;
 		}
 		
 		private function handleDeactivate(e:Event):void
 		{
 			NativeApplication.nativeApplication.systemIdleMode = SystemIdleMode.NORMAL;
+			_isAppInBackground = true;
 		}
 		
 		private function handleKeys(e:KeyboardEvent):void
@@ -211,10 +215,10 @@ package
 				"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
 				"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
 				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
-				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
+				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+				"c8f6556cdbc458d0e14ce46ea6a6d913", // iPhone6+
 				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
-				"c60b7dbf46f3245f5237c48f8eb1a100" // iPhoneX
+				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
 				
 				// optionally you may set other request params
@@ -283,10 +287,10 @@ package
 				"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
 				"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
 				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
-				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
+				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+				"c8f6556cdbc458d0e14ce46ea6a6d913", // iPhone6+
 				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
-				"c60b7dbf46f3245f5237c48f8eb1a100" // iPhoneX
+				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
 				
 				// optionally you may set other request params
@@ -328,10 +332,10 @@ package
 					"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
 					"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
 					"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
-					"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
-					"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
+					"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+					"c8f6556cdbc458d0e14ce46ea6a6d913", // iPhone6+
 					"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
-					"c60b7dbf46f3245f5237c48f8eb1a100" // iPhoneX
+					"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
 				
 				// optionally you may set other request params
@@ -388,9 +392,16 @@ package
 			}
 			else if(e.adType == AdMob.AD_TYPE_REWARDED_VIDEO)
 			{
-				if(AdMob.api.rewardedVideo.isReady)
+				if(_isAppInBackground)
 				{
-					AdMob.api.rewardedVideo.show();
+					C.log("should not play the video when app is in background")
+				}
+				else
+				{
+					if(AdMob.api.rewardedVideo.isReady)
+					{
+						AdMob.api.rewardedVideo.show();
+					}
 				}
 			}
 		}

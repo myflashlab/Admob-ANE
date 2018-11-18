@@ -1,4 +1,4 @@
-# Admob ANE V4.0.0 for Android+iOS
+# Admob ANE V4.0.3 for Android+iOS
 Admob ANE supporting [DoubleClick](https://developers.google.com/ad-manager/mobile-ads-sdk/) and [Admob](https://developers.google.com/admob/) SDKs with 100% identical ActionScript API with a super easy interface so you can focus on your game logic while your app is earning more for you the smart way!
 
 **Main Features:**
@@ -9,7 +9,7 @@ Admob ANE supporting [DoubleClick](https://developers.google.com/ad-manager/mobi
 * DoubleClick SDK support
 
 # asdoc
-[find the latest asdoc for this ANE here.](http://myflashlab.github.io/asdoc/com/myflashlab/air/extensions/admob/package-detail.html)  
+[find the latest asdoc for this ANE here.](https://myflashlab.github.io/asdoc/com/myflashlab/air/extensions/admob/package-detail.html)  
 [How to get started? **read here**](https://github.com/myflashlab/Admob-ANE/wiki)
 
 Demo ANE can be used for test reasons only. [Download the demo ANE from here](https://github.com/myflashlab/Admob-ANE/tree/master/AIR/lib).
@@ -41,8 +41,8 @@ import com.myflashlab.air.extensions.admob.*;
 import com.myflashlab.air.extensions.dependency.OverrideAir;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
-else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-3940256099942544~3347511713");
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.init(stage, "ca-app-pub-3940256099942544~1458002511");
 
 /*
 	If you want to initialize DoubleClick SDK instead of admob, all you have to do is to pass null as the
@@ -62,7 +62,8 @@ AdMob.api.addEventListener(AdMobEvents.AD_OPENED, 				onAdOpened);
 AdMob.api.banner.addEventListener(AdMobEvents.SIZE_MEASURED, 	onBannerAdSizeReceived);
 
 // to create a banner Ad, first you need to initialize a new banner with your unitId and prefered banner size
-AdMob.api.banner.init("ca-app-pub-930840122057342/5256142323", ApiBannerAds.BANNER);
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.banner.init("ca-app-pub-3940256099942544/6300978111", ApiBannerAds.BANNER);
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("pub-3940256099942544/2934735716", ApiBannerAds.BANNER);
 
 // then you should create a new Ad request
 var adRequest:AdRequest = new AdRequest();
@@ -118,8 +119,8 @@ import com.myflashlab.air.extensions.admob.*;
 import com.myflashlab.air.extensions.dependency.OverrideAir;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
-else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-3940256099942544~3347511713");
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.init(stage, "ca-app-pub-3940256099942544~1458002511");
 
 /*
 	If you want to initialize DoubleClick SDK instead of admob, all you have to do is to pass null as the
@@ -142,7 +143,8 @@ AdMob.api.addEventListener(AdMobEvents.AD_OPENED, 				onAdOpened);
 */
 
 // The first step is to initialize a new interstitial Ad with your unitId that you have created in your Admob console.
-AdMob.api.interstitial.init("ca-app-pub-9476398060240162/1457820116");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.interstitial.init("ca-app-pub-3940256099942544/1033173712");
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.interstitial.init("pub-3940256099942544/4411468910");
 
 // then create a new Ad request just like how you did for the Banner Ads
 var adRequest:AdRequest = new AdRequest();
@@ -155,10 +157,17 @@ private function onAdLoaded(e:AdMobEvents):void
 {
 	if (e.adType == AdMob.AD_TYPE_INTERSTITIAL)
 	{
-		// Your Ad is ready to be shown. show it whenever you like!
-		if(AdMob.api.interstitial.isLoaded)
+		// Your Ad is ready to be shown. show it whenever you like; But not when your app is in background!
+		if(_isAppInBackground)
 		{
-			AdMob.api.interstitial.show();
+			trace("should not play the video when app is in background")
+		}
+		else
+		{
+			if(AdMob.api.interstitial.isLoaded)
+			{
+				AdMob.api.interstitial.show();
+			}
 		}
 	}
 }
@@ -171,8 +180,8 @@ import com.myflashlab.air.extensions.admob.*;
 import com.myflashlab.air.extensions.dependency.OverrideAir;
 
 // initialize AdMob and pass in the Adobe AIR Stage and your AdmMob ApplicationCode
-if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582175");
-else if(OverrideAir.os == OverrideAir.IOS) AdMob.init(stage, "ca-app-pub-9002001127208746~3709582176");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-3940256099942544~3347511713");
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.init(stage, "ca-app-pub-3940256099942544~1458002511");
 
 /*
 	If you want to initialize DoubleClick SDK instead of admob, all you have to do is to pass null as the
@@ -196,17 +205,25 @@ AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_DELIVER_REWARD, onDelive
 // then create a new Ad request just like how you did for the Banner Ads
 var adRequest:AdRequest = new AdRequest();
 
-AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-9202401623205742/3427670519");
+if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-3940256099942544/5224354917");
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-3940256099942544/1712485313");
 
 // now, you must wait for the banner to load before you can show it.
 private function onAdLoaded(e:AdMobEvents):void
 {
 	if (e.adType == AdMob.AD_TYPE_REWARDED_VIDEO)
 	{
-		// Your Ad is ready to be shown. show it whenever you like!
-		if(AdMob.api.rewardedVideo.isReady)
+		// Your Ad is ready to be shown. show it whenever you like; But not when your app is in background!
+		if(_isAppInBackground)
 		{
-			AdMob.api.rewardedVideo.show();
+			trace("should not play the video when app is in background")
+		}
+		else
+		{
+			if(AdMob.api.rewardedVideo.isReady)
+			{
+				AdMob.api.rewardedVideo.show();
+			}
 		}
 	}
 }
@@ -325,6 +342,10 @@ http://www.myflashlabs.com/product/firebase-admob-air-native-extension/
 [How to get started with Admob?](https://github.com/myflashlab/Admob-ANE/wiki)
 
 # Changelog
+*Nov 16, 2018 - V4.0.3*
+* Works with OverrideAir ANE V5.6.1 or higher
+* Works with ANELAB V1.1.26 or higher
+
 *Oct 11, 2018 - V4.0.0*
 * Added support for the DoubleClick API. Notice that in your app you can use only one platform. it's either Admob or DoubleClick. You will not be able to use them both at the same time.
 * To use DoubleClick API, simply pass null as the second parameter when initializing the ANE. All the other methods are just like before.

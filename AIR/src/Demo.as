@@ -44,6 +44,8 @@ package
 		private var _list:List;
 		private var _numRows:int = 1;
 		
+		private var _isAppInBackground:Boolean;
+		
 		public function Demo():void 
 		{
 			Multitouch.inputMode = MultitouchInputMode.GESTURE;
@@ -100,11 +102,13 @@ package
 		private function handleActivate(e:Event):void
 		{
 			NativeApplication.nativeApplication.systemIdleMode = SystemIdleMode.KEEP_AWAKE;
+			_isAppInBackground = false;
 		}
 		
 		private function handleDeactivate(e:Event):void
 		{
 			NativeApplication.nativeApplication.systemIdleMode = SystemIdleMode.NORMAL;
+			_isAppInBackground = true;
 		}
 		
 		private function handleKeys(e:KeyboardEvent):void
@@ -158,20 +162,13 @@ package
 		
 		private function init():void
 		{
-			if(!OverrideAir.isSupported)
-			{
-				trace("These ANEs work on real devices only; not emulators");
-				C.log("These ANEs work on real devices only; not emulators");
-				return;
-			}
-			
 			// remove this line in production build or pass null as the delegate
 			OverrideAir.enableDebugger(myDebuggerDelegate);
 			
-			// initialize AdMob and pass in the Adobe Air Stage and your AdmMob ApplicationCode
-			// pass null as the second parameter if you want to use DoubleClick API instead. 
-			// check out the sample file DemoDoubleClick.as
-			AdMob.init(stage, "ca-app-pub-9872578950174042~5422482125");
+			// initialize AdMob and pass in the AIR Stage and your AdmMob ApplicationCode
+			// pass null as the second parameter if you want to use DoubleClick API instead
+			if(OverrideAir.os == OverrideAir.ANDROID) AdMob.init(stage, "ca-app-pub-3940256099942544~3347511713");
+			else if(OverrideAir.os == OverrideAir.IOS)AdMob.init(stage, "ca-app-pub-3940256099942544~1458002511");
 			
 			// Add general listeners for the Ads
 			AdMob.api.addEventListener(AdMobEvents.AD_CLOSED, 				onAdClosed);
@@ -205,7 +202,8 @@ package
 			
 			function initBanner(e:MouseEvent):void
 			{
-				AdMob.api.banner.init("ca-app-pub-9202401623205742/5226121317", ApiBannerAds.BANNER);
+				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.banner.init("ca-app-pub-3940256099942544/6300978111", ApiBannerAds.BANNER);
+				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("pub-3940256099942544/2934735716", ApiBannerAds.BANNER);
 			}
 			//----------------------------------------------------------------------
 			var btn1:MySprite = createBtn("2) load Banner", 0xDFE4FF);
@@ -219,11 +217,11 @@ package
 				"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
 				"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
 				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
-				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
-				"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
+				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+				"c8f6556cdbc458d0e14ce46ea6a6d913", // iPhone6+
+				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
+				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
-				adRequest.gender = AdRequest.GENDER_UNKNOWN;
 				
 				// optionally you may set other request params
 				
@@ -277,7 +275,8 @@ package
 			
 			function initInterstitial(e:MouseEvent):void
 			{
-				AdMob.api.interstitial.init("ca-app-pub-9202401623205742/5226121317");
+				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.interstitial.init("ca-app-pub-3940256099942544/1033173712");
+				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.interstitial.init("pub-3940256099942544/4411468910");
 			}
 			//----------------------------------------------------------------------
 			var btn4:MySprite = createBtn("2) load Interstitial then show it", 0xFF9900);
@@ -291,11 +290,11 @@ package
 				"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
 				"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
 				"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
-				"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
-				"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
-				"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
+				"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+				"c8f6556cdbc458d0e14ce46ea6a6d913", // iPhone6+
+				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
+				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
-				adRequest.gender = AdRequest.GENDER_UNKNOWN;
 				
 				// optionally you may set other request params
 				
@@ -336,14 +335,16 @@ package
 					"282D9A2CD27F130F1C75646BBE5E59CE", // nexus 5x
 					"D4898953B533540143C3AF9542A3901D", // Samsung Tablet
 					"01633B9B5053A45AC8E3344D1A8664BF", // sony XperiaZ
-					"b715a5fb533b76abc927f1df81ccc15d",  // iPhone5
-					"c8f6556cdbc458d0e14ce46ea6a6d913",  // iPhone6+
-					"7907F39B7194BFF36F1FCE72233A4FBB" // Huawei
+					"b715a5fb533b76abc927f1df81ccc15d", // iPhone5
+					"c8f6556cdbc458d0e14ce46ea6a6d913", // iPhone6+
+					"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
+					"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
 				
 				// optionally you may set other request params
 				
-				AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-9202401623205742/3427670519");
+				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-3940256099942544/5224354917");
+				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-3940256099942544/1712485313");
 			}
 			
 			
@@ -394,9 +395,16 @@ package
 			}
 			else if(e.adType == AdMob.AD_TYPE_REWARDED_VIDEO)
 			{
-				if(AdMob.api.rewardedVideo.isReady)
+				if(_isAppInBackground)
 				{
-					AdMob.api.rewardedVideo.show();
+					C.log("should not play the video when app is in background")
+				}
+				else
+				{
+					if(AdMob.api.rewardedVideo.isReady)
+					{
+						AdMob.api.rewardedVideo.show();
+					}
 				}
 			}
 		}

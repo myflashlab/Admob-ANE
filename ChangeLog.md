@@ -1,5 +1,9 @@
 Admob Air Native Extension
 
+*Nov 16, 2018 - V4.0.3*
+* Works with OverrideAir ANE V5.6.1 or higher
+* Works with ANELAB V1.1.26 or higher
+
 *Oct 11, 2018 - V4.0.0*
 * Added support for the DoubleClick API. Notice that in your app you can use only one platform. it's either Admob or DoubleClick. You will not be able to use them both at the same time.
 * To use DoubleClick API, simply pass null as the second parameter when initializing the ANE. All the other methods are just like before.
