@@ -1,5 +1,8 @@
 Admob Air Native Extension
 
+*Dec 14, 2018 - V4.0.4*
+* Fixed the issue when on some devices banner dimension was returned as 0x0.
+
 *Nov 16, 2018 - V4.0.3*
 * Works with OverrideAir ANE V5.6.1 or higher
 * Works with ANELAB V1.1.26 or higher

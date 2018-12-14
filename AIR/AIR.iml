@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="AIR">
     <configurations>
-      <configuration name="AIR" target-platform="Mobile" pure-as="true" main-class="DemoDoubleClick" output-file="Main.swf" output-folder="$MODULE_DIR$/out/production/AIR">
+      <configuration name="AIR" target-platform="Mobile" pure-as="true" main-class="Demo" output-file="Main.swf" output-folder="$MODULE_DIR$/out/production/AIR">
         <dependencies target-player="25.0">
           <entries>
             <entry library-id="1c696a4b-410d-456b-b23a-cc85708819de">
