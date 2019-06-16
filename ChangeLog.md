@@ -1,5 +1,81 @@
 Admob Air Native Extension
 
+*Jun 16, 2019 - V4.1.0*
+* Read Google's SDK internal changelog for your reference. [iOS](https://developers.google.com/admob/ios/rel-notes), [Android](https://developers.google.com/admob/android/rel-notes)
+* min iOS version to support this ANE is 10.0+
+* min Android API version to support this ANE is 19+
+* Updated to [Android Admob SDK V17.2.0](https://developers.google.com/admob/android/rel-notes) You must update the dependency files to the [latest available version](https://github.com/myflashlab/common-dependencies-ANE). New dependencies are required beside the older ones:
+```xml
+<!-- ... older dependencies -->
+
+<!-- new ones as follow must be added -->
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.measurementBase</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.gass</extensionID>
+<extensionID>com.myflashlab.air.extensions.dependency.gson</extensionID>
+```
+* Updated to [iOS Admob SDK V7.42.1](https://developers.google.com/admob/ios/rel-notes) You must update the .framework files in your *AIR SDK/lib/aot/stub/* from [this archive Firebase V5.20.2](https://dl.google.com/firebase/sdk/ios/5_20_2/Firebase-5.20.2.zip)
+  * GoogleMobileAds.framework
+  * FIRAnalyticsConnector.framework
+  * FirebaseAnalytics.framework
+  * FirebaseCore.framework
+  * FirebaseCoreDiagnostics.framework
+  * FirebaseInstanceID.framework
+  * GoogleAppMeasurement.framework
+  * GoogleUtilities.framework
+  * nanopb.framework
+* There's a [known bug in AIR SDK](https://tracker.adobe.com/#/view/AIR-4198557). To bypass compilation errors on the iOS side, follow [this video tutorial](https://www.youtube.com/watch?v=m4bwZRCvs2c). 
+* Removed deprecated properties ```gender```, ```userBirthday``` and ```isDesignedForFamilies``` from ```AdRequest``` class.
+* Added new properties ```maxAdContentRating``` and ```tagForUnderAgeOfConsent``` to ```AdRequest``` class.
+```actionscript
+// Values of newly added properties must be from below:
+AdRequest.MAX_AD_CONTENT_RATING_G
+AdRequest.MAX_AD_CONTENT_RATING_MA
+AdRequest.MAX_AD_CONTENT_RATING_PG
+AdRequest.MAX_AD_CONTENT_RATING_T
+
+AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_FALSE
+AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE
+AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_UNSPECIFIED
+```
+* If you are using Admob or DoubleClick, it must be decleard in the manifest .xml file:
+```xml
+<!-- On the Android side, under the <application> tag -->
+
+
+<!-- If you are using Admob -->
+<meta-data
+    android:name="com.google.android.gms.ads.APPLICATION_ID"
+    android:value="ca-app-pub-3940256099942544~3347511713"/> <!-- Replace with your own APPLICATION_ID -->
+
+<!-- If you are using Double-Click -->
+<meta-data
+    android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+    android:value="true"/>
+
+
+
+<!-- On the iOS side, under the <InfoAdditions> tag -->
+
+
+<!-- If you are using Admob -->
+<key>GADApplicationIdentifier</key>
+<string>ca-app-pub-3940256099942544~1458002511</string> <!-- Replace with your own APPLICATION_ID -->
+
+<!-- If you are using Double-Click -->
+<key>GADIsAdManagerApp</key>
+<true/>
+```
+* Added new event for rewarded videos ```AdMobEvents.METADATA_CHANGED```:
+```actionscript
+AdMob.api.rewardedVideo.addEventListener(AdMobEvents.METADATA_CHANGED, onMetadataChanged);
+
+function onMetadataChanged(e:AdMobEvents):void
+{
+	trace("onMetadataChanged: " + e.metadata);
+}
+```
+* Requesting a second rewarded ad while another rewarded ad is being presented is no longer allowed. Another ad can be requested after presentation is over in rewardBasedVideoAdDidClose.
+
 *Dec 14, 2018 - V4.0.4*
 * Fixed the issue when on some devices banner dimension was returned as 0x0.
 

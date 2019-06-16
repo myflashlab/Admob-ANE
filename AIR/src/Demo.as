@@ -155,15 +155,13 @@ package
 			}
 		}
 		
-		private function myDebuggerDelegate($ane:String, $class:String, $msg:String):void
-		{
-			trace($ane+"("+$class+") "+$msg);
-		}
-		
 		private function init():void
 		{
-			// remove this line in production build or pass null as the delegate
-			OverrideAir.enableDebugger(myDebuggerDelegate);
+			// Remove OverrideAir debugger in production builds
+			OverrideAir.enableDebugger(function ($ane:String, $class:String, $msg:String):void
+			{
+				trace($ane+" ("+$class+") "+$msg);
+			});
 			
 			// initialize AdMob and pass in the AIR Stage and your AdmMob ApplicationCode
 			// pass null as the second parameter if you want to use DoubleClick API instead
@@ -184,6 +182,7 @@ package
 			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_BEGIN_PLAYING, onAdBeginPlayiing);
 			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_END_PLAYING, onAdEndPlayiing);
 			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_DELIVER_REWARD, onDeliverReward);
+			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.METADATA_CHANGED, onMetadataChanged);
 			
 			
 			
@@ -222,6 +221,11 @@ package
 				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
 				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
+				
+				// make sure to set request params based on your app environment...
+//				adRequest.maxAdContentRating = AdRequest.MAX_AD_CONTENT_RATING_T;
+//				adRequest.tagForUnderAgeOfConsent = AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE;
+//				adRequest.tagForChildDirectedTreatment = true;
 				
 				// optionally you may set other request params
 				
@@ -296,6 +300,11 @@ package
 				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
 				
+				// make sure to set request params based on your app environment...
+//				adRequest.maxAdContentRating = AdRequest.MAX_AD_CONTENT_RATING_T;
+//				adRequest.tagForUnderAgeOfConsent = AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE;
+//				adRequest.tagForChildDirectedTreatment = true;
+				
 				// optionally you may set other request params
 				
 				AdMob.api.interstitial.loadAd(adRequest);
@@ -341,6 +350,11 @@ package
 					"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
 				
+				// make sure to set request params based on your app environment...
+//				adRequest.maxAdContentRating = AdRequest.MAX_AD_CONTENT_RATING_T;
+//				adRequest.tagForUnderAgeOfConsent = AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE;
+//				adRequest.tagForChildDirectedTreatment = true;
+				
 				// optionally you may set other request params
 				
 				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.rewardedVideo.loadAd(adRequest, "ca-app-pub-3940256099942544/5224354917");
@@ -364,30 +378,29 @@ package
 		
 		private function onAdClosed(e:AdMobEvents):void
 		{
-			C.log("onAdClosed > " + e.adType); // AdMob.AD_TYPE_*
+			trace("onAdClosed > " + e.adType); // AdMob.AD_TYPE_*
 		}
 		
 		private function onAdFailed(e:AdMobEvents):void
 		{
-			C.log("onAdFailed adType > " + e.adType); // AdMob.AD_TYPE_*
-			C.log("onAdFailed errorCode > " + e.errorCode); // AdMob.ERROR_CODE_*
-			C.log("onAdFailed msg > " + e.msg);
+			trace("onAdFailed adType > " + e.adType); // AdMob.AD_TYPE_*
+			trace("onAdFailed errorCode > " + e.errorCode); // AdMob.ERROR_CODE_*
+			trace("onAdFailed msg > " + e.msg);
 		}
 		
 		private function onAdLeftApp(e:AdMobEvents):void
 		{
-			C.log("onAdLeftApp > " + e.adType); // AdMob.AD_TYPE_*
+			trace("onAdLeftApp > " + e.adType); // AdMob.AD_TYPE_*
 		}
 		
 		private function onAdLoaded(e:AdMobEvents):void
 		{
-			C.log("onAdLoaded > " + e.adType); // AdMob.AD_TYPE_*
+			trace("onAdLoaded > " + e.adType); // AdMob.AD_TYPE_*
 			
 			if (e.adType == AdMob.AD_TYPE_BANNER)
 			{
 				AdMob.api.banner.x = stage.stageWidth / 2 - AdMob.api.banner.width / 2;
 				AdMob.api.banner.y = stage.stageHeight / 2 - AdMob.api.banner.height / 2;
-				
 			}
 			else if(e.adType == AdMob.AD_TYPE_INTERSTITIAL)
 			{
@@ -418,27 +431,29 @@ package
 		{
 			// NOTE: do not try to set the position of the Ad here! wait for the AdMobEvents.AD_LOADED event first!
 			
-			C.log("onBannerAdSizeReceived");
-			C.log("width = " + e.width); // OR AdMob.api.banner.width
-			C.log("height = " + e.height); // OR AdMob.api.banner.height
+			trace("onBannerAdSizeReceived");
+			trace("width = " + e.width); // OR AdMob.api.banner.width
+			trace("height = " + e.height); // OR AdMob.api.banner.height
 		}
 		
 		private function onAdBeginPlayiing(e:AdMobEvents):void
 		{
-			C.log("onAdBeginPlayiing");
 			trace("onAdBeginPlayiing");
 		}
 		
 		private function onAdEndPlayiing(e:AdMobEvents):void
 		{
-			C.log("onAdEndPlayiing");
 			trace("onAdEndPlayiing");
 		}
 		
 		private function onDeliverReward(e:AdMobEvents):void
 		{
-			C.log("onDeliverReward Type: " + e.rewardType + " amount: " + e.rewardAmount);
 			trace("onDeliverReward Type: " + e.rewardType + " amount: " + e.rewardAmount);
+		}
+		
+		private function onMetadataChanged(e:AdMobEvents):void
+		{
+			trace("onMetadataChanged: " + e.metadata);
 		}
 		
 		

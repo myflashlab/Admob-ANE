@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<application xmlns="http://ns.adobe.com/air/application/31.0">
+<application xmlns="http://ns.adobe.com/air/application/32.0">
   <id>com.doitflash.admob</id>
-  <versionNumber>4.0.4</versionNumber>
+  <versionNumber>4.1.0</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
   <filename>exAdmob</filename>
   <name>AdMob</name>
@@ -31,6 +31,18 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
+
+        <!-- If you are using Admob (must remove the Double-Click meta-data tag) -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/> <!-- Replace with your own APPLICATION_ID -->
+
+        <!-- If you are using Double-Click (must remove the Admob meta-data tag) -->
+        <!--
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
+        -->
 			
 		<meta-data
             android:name="com.google.android.gms.version"
@@ -44,9 +56,9 @@
 	  
 	 <InfoAdditions><![CDATA[
 	
-		<!--iOS 8.0 or higher can support this ANE-->
+		<!--iOS 10.0 or higher can support this ANE-->
 		<key>MinimumOSVersion</key>
-		<string>8.0</string>
+		<string>10.0</string>
 		 
 		<key>UIPrerenderedIcon</key>
 		<true/>
@@ -69,6 +81,16 @@
 			<key>NSAllowsArbitraryLoads</key>
 			<true/>
 		</dict>
+
+		<!-- If you are using Admob (must remove GADIsAdManagerApp) -->
+        <key>GADApplicationIdentifier</key>
+        <string>ca-app-pub-3940256099942544~1458002511</string> <!-- Replace with your own APPLICATION_ID -->
+
+		<!-- If you are using Double-Click (must remove GADApplicationIdentifier) -->
+        <!--
+        <key>GADIsAdManagerApp</key>
+        <true/>
+        -->
 		
 	]]></InfoAdditions>
     <requestedDisplayResolution>high</requestedDisplayResolution>
@@ -111,6 +133,9 @@
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.measurementBase</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.gass</extensionID>
+  <extensionID>com.myflashlab.air.extensions.dependency.gson</extensionID>
 	
   </extensions>
 </application>

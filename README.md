@@ -258,14 +258,25 @@ FOR ANDROID:
 		</activity>
 		
 		<!-- Include the AdActivity configChanges and themes. -->
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent" />
+		<activity
+			android:name="com.google.android.gms.ads.AdActivity"
+			android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+			android:theme="@android:style/Theme.Translucent" />
 			
 		<meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+			android:name="com.google.android.gms.version"
+			android:value="@integer/google_play_services_version" />
+
+
+		<!-- If you are using Admob (must remove the Double-Click meta-data tag) -->
+		<meta-data
+			android:name="com.google.android.gms.ads.APPLICATION_ID"
+			android:value="ca-app-pub-3940256099942544~3347511713"/> <!-- Replace with your own APPLICATION_ID -->
+
+		<!-- If you are using Double-Click (must remove the Admob meta-data tag) -->
+		<meta-data
+		android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+		android:value="true"/>
 		
 	</application>
 </manifest>
@@ -278,15 +289,25 @@ FOR ANDROID:
 FOR iOS:
 -->
 	<InfoAdditions>
-		<!--iOS 8.0 or higher can support this ANE-->
+		<!--iOS 10.0 or higher can support this ANE-->
 		<key>MinimumOSVersion</key>
-		<string>8.0</string>
+		<string>10.0</string>
 		
 		<key>NSAppTransportSecurity</key>
 		<dict>
 			<key>NSAllowsArbitraryLoads</key>
 			<true/>
 		</dict>
+
+
+		<!-- If you are using Admob (must remove GADIsAdManagerApp) -->
+		<key>GADApplicationIdentifier</key>
+		<string>ca-app-pub-3940256099942544~1458002511</string> <!-- Replace with your own APPLICATION_ID -->
+
+		<!-- If you are using Double-Click (must remove GADApplicationIdentifier) -->
+		<key>GADIsAdManagerApp</key>
+		<true/>
+
 		
 	</InfoAdditions>
 
@@ -307,6 +328,9 @@ Embedding the ANE:
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.measurementBase</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.gass</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.gson</extensionID>
 	
 	<!-- And finally embed the main Admob ANE -->
 	<extensionID>com.myflashlab.air.extensions.admob</extensionID>
@@ -316,18 +340,19 @@ Embedding the ANE:
 ```
 
 # Requirements 
-1. Android API 15+
-2. iOS SDK 8.0+
+1. Android API 19+
+2. iOS SDK 10.0+
 3. AIR SDK 30+
-4. To compile on iOS, you will need to add the followng frameworks to your AIR SDK at location: ```AIR_SDK/lib/aot/stub```. Download them from [this Firebase SDK](https://dl.google.com/firebase/sdk/ios/5_4_1/Firebase-5.4.1.zip).
-* GoogleMobileAds
-* FirebaseAnalytics
-* FirebaseCore
-* FirebaseCoreDiagnostics
-* FirebaseNanoPB
-* FirebaseInstanceID
-* GoogleToolboxForMac
-* nanopb
+4. To compile on iOS, you will need to add the followng frameworks to your AIR SDK at location: ```AIR_SDK/lib/aot/stub```. Download them from [Firebase SDK V5.20.2](https://dl.google.com/firebase/sdk/ios/5_20_2/Firebase-5.20.2.zip).
+* GoogleMobileAds.framework
+* FIRAnalyticsConnector.framework
+* FirebaseAnalytics.framework
+* FirebaseCore.framework
+* FirebaseCoreDiagnostics.framework
+* FirebaseInstanceID.framework
+* GoogleAppMeasurement.framework
+* GoogleUtilities.framework
+* nanopb.framework
 
 # Commercial Version
 https://www.myflashlabs.com/product/firebase-admob-air-native-extension/

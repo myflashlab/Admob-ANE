@@ -155,15 +155,13 @@ package
 			}
 		}
 		
-		private function myDebuggerDelegate($ane:String, $class:String, $msg:String):void
-		{
-			trace($ane+"("+$class+") "+$msg);
-		}
-		
 		private function init():void
 		{
-			// remove this line in production build or pass null as the delegate
-			OverrideAir.enableDebugger(myDebuggerDelegate);
+			// Remove OverrideAir debugger in production builds
+			OverrideAir.enableDebugger(function ($ane:String, $class:String, $msg:String):void
+			{
+				trace($ane+" ("+$class+") "+$msg);
+			});
 			
 			// initialize the ANE and pass the AIR Stage to the ANE
 			// pass null for the second param so DoubleClick API will be used instead of Admob
@@ -183,6 +181,7 @@ package
 			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_BEGIN_PLAYING, onAdBeginPlayiing);
 			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_END_PLAYING, onAdEndPlayiing);
 			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.AD_DELIVER_REWARD, onDeliverReward);
+			AdMob.api.rewardedVideo.addEventListener(AdMobEvents.METADATA_CHANGED, onMetadataChanged);
 			
 			
 			
@@ -220,6 +219,11 @@ package
 				"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
 				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
+				
+				// make sure to set request params based on your app environment...
+//				adRequest.maxAdContentRating = AdRequest.MAX_AD_CONTENT_RATING_T;
+//				adRequest.tagForUnderAgeOfConsent = AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE;
+//				adRequest.tagForChildDirectedTreatment = true;
 				
 				// optionally you may set other request params
 				
@@ -293,6 +297,11 @@ package
 				"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
 				
+				// make sure to set request params based on your app environment...
+//				adRequest.maxAdContentRating = AdRequest.MAX_AD_CONTENT_RATING_T;
+//				adRequest.tagForUnderAgeOfConsent = AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE;
+//				adRequest.tagForChildDirectedTreatment = true;
+				
 				// optionally you may set other request params
 				
 				AdMob.api.interstitial.loadAd(adRequest);
@@ -337,6 +346,11 @@ package
 					"7907F39B7194BFF36F1FCE72233A4FBB", // Huawei
 					"c60b7dbf46f3245f5237c48f8eb1a100"  // iPhoneX
 				];
+				
+				// make sure to set request params based on your app environment...
+//				adRequest.maxAdContentRating = AdRequest.MAX_AD_CONTENT_RATING_T;
+//				adRequest.tagForUnderAgeOfConsent = AdRequest.TAG_FOR_UNDER_AGE_OF_CONSENT_TRUE;
+//				adRequest.tagForChildDirectedTreatment = true;
 				
 				// optionally you may set other request params
 				
@@ -436,6 +450,12 @@ package
 		{
 			C.log("onDeliverReward Type: " + e.rewardType + " amount: " + e.rewardAmount);
 			trace("onDeliverReward Type: " + e.rewardType + " amount: " + e.rewardAmount);
+		}
+		
+		private function onMetadataChanged(e:AdMobEvents):void
+		{
+			C.log("onMetadataChanged: " + e.metadata);
+			trace("onMetadataChanged: " + e.metadata);
 		}
 		
 		

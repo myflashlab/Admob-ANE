@@ -7,6 +7,9 @@ Copy the purchased [admob.ane](https://www.myflashlabs.com/product/firebase-admo
 1. googlePlayServices_ads.ane
 1. googlePlayServices_adsLite.ane
 1. googlePlayServices_basement.ane
+1. googlePlayServices_gass.ane
+1. googlePlayServices_measurementBase.ane
+1. gson.ane
 1. overrideAir.ane
 
 Download dependency ANEs from here: https://github.com/myflashlab/common-dependencies-ANE
