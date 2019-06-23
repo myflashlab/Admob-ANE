@@ -24,6 +24,7 @@ Admob Air Native Extension
   * GoogleUtilities.framework
   * nanopb.framework
 * There's a [known bug in AIR SDK](https://tracker.adobe.com/#/view/AIR-4198557). To bypass compilation errors on the iOS side, follow [this video tutorial](https://www.youtube.com/watch?v=m4bwZRCvs2c). 
+* There's another known bug in AIR SDK on the Android side. The current /Users/{username}/Documents/AIR_32.116/lib/android/bin/dx.jar file in AIRSDK is too old! until Adobe updates that file, we may use the newer version copied from Android SDK build tools 28.0.3 /Users/{username}/Library/Android/sdk/build-tools/28.0.3/lib/dx.jar
 * Removed deprecated properties ```gender```, ```userBirthday``` and ```isDesignedForFamilies``` from ```AdRequest``` class.
 * Added new properties ```maxAdContentRating``` and ```tagForUnderAgeOfConsent``` to ```AdRequest``` class.
 ```actionscript
