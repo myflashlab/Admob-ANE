@@ -1,5 +1,10 @@
 Admob Air Native Extension
 
+*Aug 2, 2019 - V4.1.1*
+* Added Android 64-bit support
+* Supported iOS 10+
+* Removed ```AdMob.os``` property. instead use ```OverrideAir.os```
+
 *Jun 16, 2019 - V4.1.0*
 * Read Google's SDK internal changelog for your reference. [iOS](https://developers.google.com/admob/ios/rel-notes), [Android](https://developers.google.com/admob/android/rel-notes)
 * min iOS version to support this ANE is 10.0+
