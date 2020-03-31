@@ -1,5 +1,10 @@
 Admob Air Native Extension
 
+*Mar 31, 2020 - V5.0.2*
+* Updated to androidx libraries.
+* updated Android SDK to V18.3.0. This is synced with Firebase ANEs V9.*.*
+* updated iOS SDK to [V7.47.0](https://dl.google.com/firebase/sdk/ios/6_5_0/Firebase-6.5.0.zip). This is synced with Firebase ANEs V9.*.*
+
 *Aug 2, 2019 - V4.1.1*
 * Added Android 64-bit support
 * Supported iOS 10+

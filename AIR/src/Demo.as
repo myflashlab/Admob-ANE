@@ -124,6 +124,7 @@ package
 		{
 			if (_txt)
 			{
+				_txt.y = 150 * (1 / DeviceInfo.dpiScaleMultiplier);
 				_txt.width = stage.stageWidth * (1 / DeviceInfo.dpiScaleMultiplier);
 				
 				C.x = 0;
@@ -202,7 +203,7 @@ package
 			function initBanner(e:MouseEvent):void
 			{
 				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.banner.init("ca-app-pub-3940256099942544/6300978111", ApiBannerAds.BANNER);
-				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("pub-3940256099942544/2934735716", ApiBannerAds.BANNER);
+				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("ca-app-pub-3940256099942544/2934735716", ApiBannerAds.BANNER);
 			}
 			//----------------------------------------------------------------------
 			var btn1:MySprite = createBtn("2) load Banner", 0xDFE4FF);
@@ -280,7 +281,7 @@ package
 			function initInterstitial(e:MouseEvent):void
 			{
 				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.interstitial.init("ca-app-pub-3940256099942544/1033173712");
-				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.interstitial.init("pub-3940256099942544/4411468910");
+				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.interstitial.init("ca-app-pub-3940256099942544/4411468910");
 			}
 			//----------------------------------------------------------------------
 			var btn4:MySprite = createBtn("2) load Interstitial then show it", 0xFF9900);

@@ -22,8 +22,8 @@ Admob ANE supporting [DoubleClick](https://developers.google.com/ad-manager/mobi
 **For Admob**
 * iOS:
 	* appId for initializing the ANE: ```ca-app-pub-3940256099942544~1458002511```
-	* banner: ```pub-3940256099942544/2934735716```
-	* interstitial: ```pub-3940256099942544/4411468910```
+	* banner: ```ca-app-pub-3940256099942544/2934735716```
+	* interstitial: ```ca-app-pub-3940256099942544/4411468910```
 	* rewarded-video: ```ca-app-pub-3940256099942544/1712485313```
 * Android:
 	* appId for initializing the ANE: ```ca-app-pub-3940256099942544~3347511713```
@@ -60,7 +60,7 @@ AdMob.api.banner.addEventListener(AdMobEvents.SIZE_MEASURED, 	onBannerAdSizeRece
 
 // to create a banner Ad, first you need to initialize a new banner with your unitId and prefered banner size
 if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.banner.init("ca-app-pub-3940256099942544/6300978111", ApiBannerAds.BANNER);
-else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("pub-3940256099942544/2934735716", ApiBannerAds.BANNER);
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("ca-app-pub-3940256099942544/2934735716", ApiBannerAds.BANNER);
 
 // then you should create a new Ad request
 var adRequest:AdRequest = new AdRequest();
@@ -141,7 +141,7 @@ AdMob.api.addEventListener(AdMobEvents.AD_OPENED, 				onAdOpened);
 
 // The first step is to initialize a new interstitial Ad with your unitId that you have created in your Admob console.
 if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.interstitial.init("ca-app-pub-3940256099942544/1033173712");
-else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.interstitial.init("pub-3940256099942544/4411468910");
+else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.interstitial.init("ca-app-pub-3940256099942544/4411468910");
 
 // then create a new Ad request just like how you did for the Banner Ads
 var adRequest:AdRequest = new AdRequest();
@@ -241,7 +241,7 @@ FOR ANDROID:
 	
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-sdk android:targetSdkVersion="26"/>
+	<uses-sdk android:targetSdkVersion="28"/>
 	
 	<application>
 		
@@ -321,10 +321,10 @@ Embedding the ANE:
 	
 	<!-- dependency ANEs https://github.com/myflashlab/common-dependencies-ANE -->
 	<extensionID>com.myflashlab.air.extensions.dependency.overrideAir</extensionID>
-	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.arch</extensionID>
-	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.core</extensionID>
-	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.customtabs</extensionID>
-	<extensionID>com.myflashlab.air.extensions.dependency.androidSupport.v4</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidx.arch</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidx.core</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidx.browser</extensionID>
+	<extensionID>com.myflashlab.air.extensions.dependency.androidx.lifecycle</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.ads.lite</extensionID>
 	<extensionID>com.myflashlab.air.extensions.dependency.googlePlayServices.basement</extensionID>
@@ -343,7 +343,7 @@ Embedding the ANE:
 1. Android API 19+
 2. iOS SDK 10.0+
 3. AIR SDK 30+
-4. To compile on iOS, you will need to add the followng frameworks to your AIR SDK at location: ```AIR_SDK/lib/aot/stub```. Download them from [Firebase SDK V5.20.2](https://dl.google.com/firebase/sdk/ios/5_20_2/Firebase-5.20.2.zip).
+4. To compile on iOS, you will need to add the followng frameworks to your AIR SDK at location: ```AIR_SDK/lib/aot/stub```. Download them from [Firebase SDK V6.5.0](https://dl.google.com/firebase/sdk/ios/6_5_0/Firebase-6.5.0.zip).
 * GoogleMobileAds.framework
 * FIRAnalyticsConnector.framework
 * FirebaseAnalytics.framework
