@@ -1,5 +1,9 @@
 # Admob Air Native Extension
 
+*May 19, 2020 - v5.9.0*
+* Updated Firebase iOS SDK to v6.18.0.
+* Updated Google Mobile Ads iOS SDK to v7.55.1.
+
 *May 10, 2020 - v5.1.0*
 * Updated Firebase iOS SDK to v6.9.0.
 * Updated Google Mobile Ads iOS SDK to v7.52.0.

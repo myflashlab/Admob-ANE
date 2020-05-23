@@ -343,18 +343,20 @@ Embedding the ANE:
 1. Android API 19+
 2. iOS SDK 10.0+
 3. AIR SDK 30+
-4. To compile on iOS, you will need to add the followng frameworks to your AIR SDK at location: ```AIR_SDK/lib/aot/stub```. Download them from [Firebase SDK V6.9.0](https://dl.google.com/firebase/sdk/ios/6_9_0/Firebase-6.9.0.zip).
+4. To compile on iOS, you will need to add the followng frameworks to your AIR SDK at location: ```AIR_SDK/lib/aot/stub```. Download them from [Firebase SDK V6.18.0](https://dl.google.com/firebase/sdk/ios/6_18_0/Firebase-6.18.0.zip).
 * GoogleMobileAds.framework
 * FIRAnalyticsConnector.framework
 * FirebaseAnalytics.framework
 * FirebaseCore.framework
 * FirebaseCoreDiagnostics.framework
+* FirebaseInstallations.framework
 * FirebaseInstanceID.framework
 * GoogleAppMeasurement.framework
 * GoogleDataTransport.framework
 * GoogleDataTransportCCTSupport.framework
 * GoogleUtilities.framework
 * nanopb.framework
+* PromisesObjC.framework
 
 # Commercial Version
 https://www.myflashlabs.com/product/firebase-admob-air-native-extension/
