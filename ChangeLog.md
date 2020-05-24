@@ -1,5 +1,8 @@
 # Admob Air Native Extension
 
+*May 20, 2020 - v5.10.0*
+- Add support for adaptive anchor banners.
+
 *May 19, 2020 - v5.9.0*
 * Updated Firebase iOS SDK to v6.18.0.
 * Updated Google Mobile Ads iOS SDK to v7.55.1.

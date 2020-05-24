@@ -202,8 +202,8 @@ package
 			
 			function initBanner(e:MouseEvent):void
 			{
-				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.banner.init("ca-app-pub-3940256099942544/6300978111", ApiBannerAds.BANNER);
-				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("ca-app-pub-3940256099942544/2934735716", ApiBannerAds.BANNER);
+				if(OverrideAir.os == OverrideAir.ANDROID) AdMob.api.banner.init("ca-app-pub-3940256099942544/6300978111", ApiBannerAds.ADAPTIVE_BANNER);
+				else if(OverrideAir.os == OverrideAir.IOS)AdMob.api.banner.init("ca-app-pub-3940256099942544/2934735716", ApiBannerAds.ADAPTIVE_BANNER);
 			}
 			//----------------------------------------------------------------------
 			var btn1:MySprite = createBtn("2) load Banner", 0xDFE4FF);
