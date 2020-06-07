@@ -1,5 +1,8 @@
 # Admob Air Native Extension
 
+*Jun 07, 2020 - v5.10.1*
+- Bug fixes and improvements.  
+
 *May 20, 2020 - v5.10.0*
 - Add support for adaptive anchor banners.
 
